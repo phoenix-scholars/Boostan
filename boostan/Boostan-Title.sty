@@ -1,37 +1,36 @@
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{Boostan-Title}[1392/01/11 v0.01 LaTeX package for title]
-
 \RequirePackage{ifthen}[1994/06/01]
 
 \newcommand{\SimplePageTitle@proposal@A}{%
 	\makeatletter%
-	\defpersianfont\titlefont[Scale=3]{B Nazanin}
-	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}%
+	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}%
 	\thispagestyle{empty}%
-	{
-		\centering
-		\vspace*{\baselineskip}
-		\rule{\textwidth}{1.6pt}
-		\vspace*{-\baselineskip}
-		\vspace*{2pt}
-		\rule{\textwidth}{0.4pt}
-		\\[\baselineskip]
+	{%
+		\centering%
+		\vspace*{\baselineskip}%
+		\rule{\textwidth}{1.6pt}%
+		\vspace*{-\baselineskip}%
+		\vspace*{2pt}%
+		\rule{\textwidth}{0.4pt}%
+		\\[\baselineskip]%
 		{%
 			\titlefont\@title%
 			\\[\baselineskip]%
 			\subtitlefont\@subtitle%
 			\\[0.2\baselineskip] % Title
 		}%
-		\rule{\textwidth}{0.4pt}
-		\vspace*{-\baselineskip}
-		\vspace{3.2pt}
-		\rule{\textwidth}{1.6pt}
-		\\[\baselineskip]
+		\rule{\textwidth}{0.4pt}%
+		\vspace*{-\baselineskip}%
+		\vspace{3.2pt}%
+		\rule{\textwidth}{1.6pt}%
+		\\[\baselineskip]%
 		\scshape % Small caps
 	}%
 	{%
-		\begin{center}
+		\begin{center}%
 		\@brief\\[\baselineskip] % Tagline(s) or further description
 		\end{center}
 	}%

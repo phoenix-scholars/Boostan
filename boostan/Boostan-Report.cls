@@ -9,7 +9,63 @@
 \LoadClass[11pt,a4paper,onecolumn]{article}
 % \LoadClass[book,a4paper]{memoir}
 
-\usepackage{../style/Boostan-Report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              package management       
+%                        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{../boostan/Boostan-Variable}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{draftwatermark}
+\usepackage{fourier}
+\usepackage[scaled=.92]{helvet}
+\usepackage{calc}
+\usepackage{pifont}
+\usepackage[font=footnotesize,labelformat=empty]{subfig}
+\usepackage{multirow}
+\usepackage{makeidx}
+\usepackage{framed}
+\usepackage{../boostan/Boostan-Environment}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{../boostan/Boostan-Glossory}
+\usepackage{xepersian}
+\usepackage{../boostan/Boostan-Title}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Graphics
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{%
+	{./}%
+	{./Pic/}%
+	{./Pic/perm/}%
+	{./images/}%
+	{./image/}%
+	{/usr/share/texmf/tex/xelatex/rcisp/images}%
+}
+
+\newcommand{\noimage}{%
+  \setlength{\fboxsep}{-\fboxrule}%
+  \fbox{\phantom{\rule{150pt}{100pt}}}% Framed box
+}
+
+\makeatletter
+\patchcmd{\Gin@ii}
+  {\begingroup}% <search>
+  {\begingroup\renewcommand{\@latex@error}[2]{\noimage}}% <replace>
+  {}% <success>
+  {}% <failure>
+\makeatother
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,10 +162,4 @@
 
 
 \endinput
-
-
-
-
-
-
 
