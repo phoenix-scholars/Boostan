@@ -96,9 +96,9 @@
     \futurelet \reserved@a \@xhline%
 }
 
-\makeatletter
-\newcommand{\DPQPageTitle@proposal}{%
-	\defpersianfont\titlefont[Scale=3]{B Nazanin}%
+\newcommand{\RCISPPageTitle@proposal}{%
+	\makeatletter
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}
 % 	\defpersianfont\pejoheshfontP[Scale=1.4]{Titr Bold}
 % 	\defpersianfont\groupfontP[Scale=1.4]{Zar}
 % 	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
@@ -106,19 +106,25 @@
 % 	\defpersianfont\InstituteFontP[Scale=1.2]{B Nazanin}
 % 	\defpersianfont\tableFontP[Scale=1]{B Nazanin}
 	\thispagestyle{empty}%
-	\begin{center}%
 	{% عنوان بالای صفحه
-		\includegraphics[width=0.2\textwidth]{logo}\\[0.1\baselineskip]%
-		{\@institute}\\[0.1\baselineskip]% Publisher
-		{\@group}\\[2\baselineskip]%%
-	}%
+		\begin{center}%
+			\includegraphics[width=0.2\textwidth]{logo}%
+			\\[0.1\baselineskip]%
+			{ پژوهشکده پردازش هوشمند علائم}% Publisher
+			\\[0.1\baselineskip]%
+			{ گروه رمز و امنیت اطلاعات}%
+			\\[2\baselineskip]%
+		\end{center}%
+	}
 	{% عنوان مستند
-		{\titlefont\@title}\\[1\baselineskip]%
-		{\@subtitle}%%
+		\begin{center}%
+			{\@subtitle}%
+			\\[1\baselineskip]%
+			{\titlefont\@title}%
+		\end{center}%
 	}%
-	\end{center}%
 	{% خصوصیت‌های مستند
-		\vfill%
+		\vfill
 		\begin{center}%
 			\begin{tabular}{@{\vrule width 2pt} p{0.2\textwidth} | p{0.6\textwidth}@{\vrule width 2pt}} \thickhline%
 			عنوان پروژه & \@title \\ \hline%
@@ -133,7 +139,7 @@
 		\end{center}%
 	}%
 	\clearpage
+	\makeatother
 }
-\makeatother
 
 \endinput
