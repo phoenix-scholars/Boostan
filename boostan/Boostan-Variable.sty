@@ -12,19 +12,11 @@
 }
 
 \def\subtitle#1{\gdef\@subtitle{#1}}
-\def\@subtitle{%
-	\@latex@error{No \noexpand\subtitle given}\@ehc%
+\def\@subtitle{
+	\@latex@error{No \noexpand\subtitle given}\@ehc
 }
 
-\def\institute#1{\gdef\@institute{#1}}
-\gdef\@institute{%
-	\@latex@error{No \noexpand\institute given}\@ehc%
-}
 
-\def\group#1{\gdef\@group{#1}}
-\gdef\@group{%
-	\@latex@error{No \noexpand\group given}\@ehc%
-}
 
 \def\brief#1{\gdef\@brief{#1}}
 \def\@brief{}
@@ -35,6 +27,12 @@
 \def\date#1{\gdef\@date{#1}}
 \gdef\@date{}
 
+
+\gdef\@institute{پژوهکشده}
+\def\institute#1{\gdef\@institute{#1}}
+
+\gdef\@group{نام گروه}
+\def\group#1{\gdef\@group{#1}}
 
 
 

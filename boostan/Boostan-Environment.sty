@@ -29,6 +29,47 @@
 %                              Algorithem and programming     
 %                        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstnewenvironment{Config}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+}{%
+	\endlatin%
+	\endminipage
+}
+
+\lstnewenvironment{config}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+}{%
+	\endlatin%
+	\endminipage
+}
+
+\lstnewenvironment{C++}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+}{%
+	\endlatin%
+	\endminipage
+}
+
+\lstnewenvironment{C}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+}{%
+	\endlatin%
+	\endminipage
+}
+
 \lstnewenvironment{xml}{
 	\latin
 	\lstset{language=Java}
@@ -42,20 +83,37 @@
 	\endlatin
 }
 
-\lstnewenvironment{ned}{
-	\latin
-	\lstset{language=Java}
-}{
-	\endlatin
+\lstnewenvironment{ned}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{%
+		language=C++,%
+		basicstyle=\ttfamily\footnotesize,%
+		frame=single,%
+		#1%
+	}%
+}{%
+	\endlatin%
+	\endminipage
 }
 
 
-\lstnewenvironment{ini}{
-	\latin
-	\lstset{language=Java}
-}{
-	\endlatin
+\lstnewenvironment{ini}[1][]{%
+	\hfil%
+	\minipage{\linewidth}%
+	\latin%
+	\lstset{%
+		language=Java,%
+		basicstyle=\ttfamily\footnotesize,%
+		frame=single,%
+		#1%
+	}%
+}{%
+	\endlatin%
+	\endminipage
 }
+
 
 
 \endinput
