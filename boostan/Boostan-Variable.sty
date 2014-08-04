@@ -1,0 +1,99 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Peoples      
+% 
+% - author
+% - editor
+% - manager
+% \since{0.1.0}
+\def\title#1{\gdef\@title{#1}}
+\def\@title{%
+	\@latex@error{No \noexpand\title given}\@ehc%
+}
+
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\@subtitle{%
+	\@latex@error{No \noexpand\subtitle given}\@ehc%
+}
+
+\def\institute#1{\gdef\@institute{#1}}
+\gdef\@institute{%
+	\@latex@error{No \noexpand\institute given}\@ehc%
+}
+
+\def\group#1{\gdef\@group{#1}}
+\gdef\@group{%
+	\@latex@error{No \noexpand\group given}\@ehc%
+}
+
+\def\brief#1{\gdef\@brief{#1}}
+\def\@brief{}
+
+\def\location#1{\gdef\@location{#1}}
+\gdef\@location{}
+
+\def\date#1{\gdef\@date{#1}}
+\gdef\@date{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Peoples      
+% 
+% - author
+% - editor
+% - manager
+% \since{0.1.0}
+\makeatletter
+\def\author#1{\gdef\@author{#1}}%
+\def\@author{%
+	\@latex@error{No \noexpand\title given}\@ehc%
+}%
+\makeatother
+
+\makeatletter
+\def\editor#1{\gdef\@editor{#1}}%
+\def\@editor{%
+	\@latex@error{No \noexpand\editor given}\@ehc%
+}%
+\makeatother
+
+\makeatletter
+\def\manager#1{\gdef\@manager{#1}}%
+\def\@manager{%
+	\@latex@error{No \noexpand\manager given}\@ehc%
+}%
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Project      
+% 
+% - Project
+% - Type
+% - Version
+% \since{0.1.0}
+\makeatletter
+\def\type#1{\gdef\@type{#1}}
+\def\@type{%
+	\@latex@error{No \noexpand\type given}\@ehc%
+}%
+\makeatother
+
+\makeatletter
+\def\version#1{\gdef\@version{#1}}
+\def\@version{%
+	\@latex@error{No \noexpand\version given}\@ehc%
+}%
+\makeatother
+
+\makeatletter
+\def\project#1{\gdef\@project{#1}}
+\def\@project{%
+	\@latex@error{No \noexpand\project given}\@ehc%
+}%
+\makeatother
+
+\endinput

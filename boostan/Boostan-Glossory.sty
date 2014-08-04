@@ -1,0 +1,126 @@
+
+
+\usepackage[sanitize={name=false,description=false,sort=false},nomain,xindy,acronym]{glossaries}
+\makeatletter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Glossory
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  به دلیل این‌که قرار است این دستورات پایه‌ای را بازنویسی کنیم در این‌جا تعریف می‌کنیم.
+\let\oldgls\gls
+\let\oldGls\Gls
+\let\oldglspl\glspl
+\let\oldsglspl\sglspl
+\let\oldGlspl\Glspl
+\let\oldglsuseri\glsuseri
+\let\Oldprintglossary\printglossary
+\let\oldnewglossaryentry\newglossaryentry
+
+
+\newglossary[main]{english}{gls}{glo}{واژه‌نامه}
+
+% باز تعریف محیط newacronym برای فهرست اختصارات
+\renewcommand{\newacronym}[4]{
+	\oldnewglossaryentry{#1}{type = abrr,  name={\lr{#2}} ,plural={\lr{#3}} , description = {}}
+}%
+
+% باز تعریف محیط newnotation برای فهرست نمادها
+\newcommand{\newnotation}[3]{
+	\oldnewglossaryentry{#1}{type=symbols, name={#1} ,plural={#1} , description = {#3},symbol={\lr{#2} }}
+}%
+
+
+% % توسط این دستور محیط newglossaryentry را بازنویسی می‌ کنیم. شما یک واژه به
+% صورت زیر در واژه‌نامه وارد می‌کنید:
+% %\newglossaryentry{Fading} %{name={Fading}, %plural={محوشدگی}, %description={}
+% %} % با بازنویسی این دستور ما با هر بار فراخوانی newglossaryentry دو
+% newglossaryentry با type های مختلف فراخوانی می‌شود، چرا که ما دو واژه‌نامه
+% داریم.
+% \def \myMacro{RRR}
+
+\def\@plpl{plural}
+\renewcommand{\newglossaryentry}[2]{%
+	\setkeys{glossentry}{#2}%
+	\let\thename\@glo@name
+	\let\theplural\@glo@plural
+	\let\thedesc\@glo@desc
+% 	\ifx\@glo@type\@plpl
+% 		\oldnewglossaryentry{#1}{name={\lr{\thename}} ,plural={\theplural} , description = {\thedesc}}
+% 	\else
+% 		\oldnewglossaryentry{#1}{type = persian,  name={\theplural},  plural={\lr{\thename}} , description={\thedesc}}
+		\oldnewglossaryentry{#1}{type = english,  name={\lr{\thename}} ,plural={\theplural} , description = {\thedesc}}
+% 	\fi
+}%
+
+%%% با دستورات زیر نحوه گذاشتن واژه در متن مشخص می‌شود. 
+\renewcommand*{\SetCustomDisplayStyle}[1]{%
+	\defglsdisplayfirst[#1]{##1\protect\hspace{-.1em}\LTRfootnote{\Glsentryname{\glslabel}}}% 
+	\defglsdisplay[#1]{##1}%
+}%
+\SetCustomDisplayStyle{english}
+
+
+\renewrobustcmd*{\glspl}{\@ifstar\@msglspl\@mglspl}%
+\newcommand*{\@mglspl}[1] {%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\oldglspl{#1}\oldglsuseri{#1}%
+	}{%
+		\oldglspl{#1}%
+	}%
+}
+
+\newcommand*{\@msglspl}[1]{%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\glsentryplural{#1}%
+		\oldglsuseri{#1}%
+		\oldglsuseri{#1}%
+	}{%
+		\oldglspl{#1}%
+	}
+}
+
+\renewrobustcmd*{\gls}{\@ifstar\@msgls\@mgls}
+\newcommand*{\@mgls}[1] {%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\oldgls{#1}%
+		\oldglsuseri{#1}%
+	}{%
+		\oldgls{#1}%
+	}%
+}
+\newcommand*{\@msgls}[1]{%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\glsentryname{#1}%
+		\oldglsuseri{#1}%
+		\oldglsuseri{#1}%
+	}{%
+		\glsentryname{#1}%
+		\oldglsuseri{#1}%
+	}%
+}
+
+\renewrobustcmd*{\glsuseri}{\@ifstar\@msglsuseri\@mglsuseri}%
+\newcommand*{\@msglsuseri}[1] {%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\oldglsuseri{#1}%
+		\oldglsuseri{#1}%
+	}{%
+		\oldglsuseri{#1}%
+	}%
+}
+\newcommand*{\@mglsuseri}[1]  {%
+	\ifthenelse{\equal{\glsentrytype{#1}}{english}}{%
+		\oldglsuseri{#1}%
+		\oldglsuseri{#1}%
+	}{%
+		\oldglsuseri{#1}%
+	}%
+}%
+
+
+\makeglossaries
+\glsdisablehyper
+\makeindex
+\makeatother
+\endinput

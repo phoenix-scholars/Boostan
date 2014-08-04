@@ -1,0 +1,139 @@
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{Boostan-Title}[1392/01/11 v0.01 LaTeX package for title]
+
+\RequirePackage{ifthen}[1994/06/01]
+
+\newcommand{\SimplePageTitle@proposal@A}{%
+	\makeatletter%
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}
+	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+	\thispagestyle{empty}%
+	{
+		\centering
+		\vspace*{\baselineskip}
+		\rule{\textwidth}{1.6pt}
+		\vspace*{-\baselineskip}
+		\vspace*{2pt}
+		\rule{\textwidth}{0.4pt}
+		\\[\baselineskip]
+		{%
+			\titlefont\@title%
+			\\[\baselineskip]%
+			\subtitlefont\@subtitle%
+			\\[0.2\baselineskip] % Title
+		}%
+		\rule{\textwidth}{0.4pt}
+		\vspace*{-\baselineskip}
+		\vspace{3.2pt}
+		\rule{\textwidth}{1.6pt}
+		\\[\baselineskip]
+		\scshape % Small caps
+	}%
+	{%
+		\begin{center}
+		\@brief\\[\baselineskip] % Tagline(s) or further description
+		\end{center}
+	}%
+	\vfill % Whitespace between editor names and publisher logo
+	\clearpage%
+	\makeatother%
+}
+
+\newcommand{\SimplePageTitle@proposal}{%
+	\makeatletter%
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}
+	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+	\thispagestyle{empty}%
+	{
+		\centering
+		\vspace*{\baselineskip}
+		\rule{\textwidth}{1.6pt}
+		\vspace*{-\baselineskip}
+		\vspace*{2pt}
+		\rule{\textwidth}{0.4pt}
+		\\[\baselineskip]
+		{%
+			\titlefont\@title%
+			\\[\baselineskip]%
+			\subtitlefont\@subtitle%
+			\\[0.2\baselineskip] % Title
+		}%
+		\rule{\textwidth}{0.4pt}
+		\vspace*{-\baselineskip}
+		\vspace{3.2pt}
+		\rule{\textwidth}{1.6pt}
+		\\[\baselineskip]
+		\scshape % Small caps
+	}%
+	{%
+		\begin{center}
+		\@brief\\[\baselineskip] % Tagline(s) or further description
+		\@location, \@date\par% Location and year
+		\vspace*{2\baselineskip} % Whitespace between location/year and editors
+		نویسندگان \\
+		\@author % Editor list
+		\end{center}
+	}%
+	\vfill % Whitespace between editor names and publisher logo
+	{%
+		\begin{flushright}%
+		\begin{tabular}{rr}
+		پژوهشکده & :\@institute \\
+		گروه     & :\@group \\
+		پروژه    & :\@project\\
+		نوع مستند& :\@type \\
+		ویرایش   & :\@version \\
+		\end{tabular}
+		\end{flushright}
+	}%
+	\clearpage%
+	\makeatother%
+}
+
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 2pt%
+    \futurelet \reserved@a \@xhline%
+}
+
+\makeatletter
+\newcommand{\DPQPageTitle@proposal}{%
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}%
+% 	\defpersianfont\pejoheshfontP[Scale=1.4]{Titr Bold}
+% 	\defpersianfont\groupfontP[Scale=1.4]{Zar}
+% 	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+% 	\defpersianfont\proposalFontP[Scale=1.8]{B Nazanin}
+% 	\defpersianfont\InstituteFontP[Scale=1.2]{B Nazanin}
+% 	\defpersianfont\tableFontP[Scale=1]{B Nazanin}
+	\thispagestyle{empty}%
+	\begin{center}%
+	{% عنوان بالای صفحه
+		\includegraphics[width=0.2\textwidth]{logo}\\[0.1\baselineskip]%
+		{\@institute}\\[0.1\baselineskip]% Publisher
+		{\@group}\\[2\baselineskip]%%
+	}%
+	{% عنوان مستند
+		{\titlefont\@title}\\[1\baselineskip]%
+		{\@subtitle}%%
+	}%
+	\end{center}%
+	{% خصوصیت‌های مستند
+		\vfill%
+		\begin{center}%
+			\begin{tabular}{@{\vrule width 2pt} p{0.2\textwidth} | p{0.6\textwidth}@{\vrule width 2pt}} \thickhline%
+			عنوان پروژه & \@title \\ \hline%
+			کارفرما     & \@institute \\ \hline%
+			مجری        & \@institute \\ \hline%
+			مدیر پروژه  & \@manager \\ \hline%
+			ویرایشگر    & \@editor \\ \hline%
+			تاریخ ارائه & \@date \\ \hline%
+			شماره نسخه  & \@version \\ 
+			\thickhline%
+			\end{tabular}%
+		\end{center}%
+	}%
+	\clearpage
+}
+\makeatother
+
+\endinput
