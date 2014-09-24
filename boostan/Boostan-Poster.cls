@@ -6,7 +6,7 @@
 \ProvidesClass{Boostan-Poster}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{a0poster}}
 \ProcessOptions 
-\LoadClass[11pt,a4paper,twocolumn]{a0poster}
+\LoadClass[landscape,a0b,final]{a0poster}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              package management       
@@ -32,7 +32,12 @@
 \usepackage{tikz,times}
 \usepackage{hyperref}
 \usepackage[sanitize={name=false,description=false,sort=false},nomain,xindy,acronym]{glossaries}
+\usepackage{epsfig}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
 \usepackage{xepersian}
+
+\usepackage{background}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,5 +144,7 @@
 
 
 \graphicspath{{./}{./Pic/}{./Pic/perm/}{./images/}{/usr/share/texmf/tex/xelatex/rcisp/images}}
+
+
 
 
