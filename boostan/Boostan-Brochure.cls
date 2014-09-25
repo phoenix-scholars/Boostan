@@ -6,7 +6,7 @@
 \ProvidesClass{Boostan-Brochure}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions 
-\LoadClass[11pt,a4paper,onecolumn]{article}
+\LoadClass[11pt,a4paper,threecolumn]{article}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              package management       
