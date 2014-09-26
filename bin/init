@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################################
 # حق نشر 1392-1402 دانش پژوهان ققنوس
 # حقوق این اثر محفوظ است.
@@ -74,10 +75,11 @@ function createProjectSkelaton() {
 	project_files=(\
 		README \
 		src/main.tex \
-	}
+	)
 	for project_file in ${project_files[*]}
 	do
-		if [ -f "$project_file" ]; then
+		if [ -f "$project_file" ];
+		then
 			printLog "$project_file" "$project_file is created before?!"
 		else
 			printLog "$project_file" "$project_file is created."
