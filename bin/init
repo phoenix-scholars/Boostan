@@ -71,6 +71,19 @@ function createProjectSkelaton() {
 			mkdir $project_dir
 		fi
 	done
+	project_files=(\
+		README \
+		src/main.tex \
+	}
+	for project_file in ${project_files[*]}
+	do
+		if [ -f "$project_dir" ]; then
+			printLog "$project_file" "$project_file is created before?!"
+		else
+			printLog "$project_dir" "$project_dir is created."
+			touch $project_dir
+		fi
+	done
 	cd "$curentPath"
 }
 
