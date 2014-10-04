@@ -23,6 +23,12 @@ portrait,
 %                              package management       
 %                        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{background}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{transparent}
 \usepackage{xepersian}
 
 
