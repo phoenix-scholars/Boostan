@@ -16,46 +16,8 @@
 # http://dpq.co.ir/licence
 #################################################################################
 #configure
-TOOL_PATH=$(realpath $0)
 
-PROJECT_PATH=`pwd`
-PROJECT_FULL_PATH=`dirname "$PROJECT_PATH"`
-PROJECT_NAME=`basename "$PROJECT_FULL_PATH"`
-
-BOOSTAN_VERSION=trunk
-BOOSTAN_REPO_PATH=https://github.com/phoenix-scholars/Boostan
-
-function printLog(){
-	printf "| %20s | %110s |\n" "$1" "$2"
-}
-
-function printLogTitle(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
-
-function printLogFooter(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
-
-function printConfigurations(){
-	printLogTitle
-	printLog PROJECT_PATH "$PROJECT_PATH"
-	printLog PROJECT_FULL_PATH "$PROJECT_FULL_PATH"
-	printLog PROJECT_NAME  "$PROJECT_NAME"
-	printLogFooter
-}
-
-#cd PROJECT_PATH
-function createProjectSkelaton() {
-	currentPath=`pwd`
+function boostan_init_create_skelaton() {
 	project_dirs=(\
 		attach \
 		src \
@@ -65,47 +27,47 @@ function createProjectSkelaton() {
 	)
 	for project_dir in ${project_dirs[*]}
 	do
-		if [ -d "$project_dir" ]; then
-			printLog "$project_dir" "$project_dir is created before, try update command."
+		if [ -d "$BOOSTAN_WRK_DIR/$project_dir" ]; then
+			boostan_log "The \"%s\" is created before, try update command." "$project_dir"
 		else
-			printLog "$project_dir" "$project_dir is created."
-			mkdir $project_dir
+			mkdir -p "$BOOSTAN_WRK_DIR/$project_dir"
+			boostan_log "%s is created." "$project_dir"
 		fi
 	done
 	project_files=(\
 		README \
+		LICENSE \
 		src/main.tex \
 	)
 	for project_file in ${project_files[*]}
 	do
-		if [ -f "$project_file" ];
+		if [ -f "$BOOSTAN_WRK_DIR/$project_file" ];
 		then
-			printLog "$project_file" "$project_file is created before?!"
+			boostan_log "%s is created before, try update command." "$project_file"
 		else
-			printLog "$project_file" "$project_file is created."
-			touch $project_file
+			touch "$BOOSTAN_WRK_DIR/$project_file"
+			boostan_log "%s is created." "$project_file" 
 		fi
 	done
-	cd "$curentPath"
 }
 
 # Check the Boostan styles and tools
-function checkoutTools(){
-	currentPath=`pwd`
+function boostan_init_checkout(){
 	tools_path=(boostan boostan-en bin)
 	for tool_path in ${tools_path[*]}
 	do
 		if [ -d "$tool_path" ]; then
-			printLog "$tool_path" "$tool_path exist, please try update command."
+			boostan_log "$tool_path" "$tool_path exist, please try update command."
 		else
 			svn checkout $BOOSTAN_REPO_PATH/$BOOSTAN_VERSION/$tool_path
-			printLog "$tool_path" "$tool_path is checked out."
+			boostan_log "$tool_path" "$tool_path is checked out."
 			rm -fR $tool_path/.svn
 		fi
 	done
-	cd "$curentPath"
 }
 
-printConfigurations
-createProjectSkelaton
-checkoutTools
+
+function boostan_init(){
+	boostan_init_create_skelaton
+	boostan_init_checkout
+}
