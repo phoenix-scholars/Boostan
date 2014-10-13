@@ -24,7 +24,7 @@ source $BOOSTAN_INS_DIR/bin/script/configure.sh
 source $BOOSTAN_INS_DIR/bin/script/build.sh
 source $BOOSTAN_INS_DIR/bin/script/init.sh
 #source $BOOSTAN_INS_DIR/bin/script/make.sh
-#source $BOOSTAN_INS_DIR/bin/script/update.sh
+source $BOOSTAN_INS_DIR/bin/script/update.sh
 source $BOOSTAN_INS_DIR/bin/script/clean.sh
 
 boostan_log "Print the configuration table."
@@ -52,6 +52,9 @@ case $BOOSTAN_COMMAND in
 		;;
 	clean)
 		boostan_clean;
+		;;
+	update)
+		boostan_update;
 		;;
 	*)
 		boostan_log "The command is empty or unsupported."

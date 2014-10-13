@@ -16,61 +16,22 @@
 # http://dpq.co.ir/licence
 #################################################################################
 #configure
-TOOL_PATH=$(realpath $0)
-
-PROJECT_PATH=`pwd`
-PROJECT_FULL_PATH=`dirname "$PROJECT_PATH"`
-PROJECT_NAME=`basename "$PROJECT_FULL_PATH"`
-
-BOOSTAN_VERSION=trunk
-BOOSTAN_REPO_PATH=https://github.com/phoenix-scholars/Boostan
-
-function printLog(){
-	printf "| %20s | %110s |\n" "$1" "$2"
-}
-
-function printLogTitle(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
-
-function printLogFooter(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
-
-function printConfigurations(){
-	printLogTitle
-	printLog PROJECT_PATH "$PROJECT_PATH"
-	printLog PROJECT_FULL_PATH "$PROJECT_FULL_PATH"
-	printLog PROJECT_NAME  "$PROJECT_NAME"
-	printLogFooter
-}
 
 # Check the Boostan styles and tools
-function updateTools(){
-	currentPath=`pwd`
+function boostan_update(){
 	tools_path=(boostan boostan-en)
 	for tool_path in ${tools_path[*]}
 	do
 		if [ -d "$tool_path" ]; then
-			printLog "$tool_path" "$tool_path exist, and we try to update."
+			boostan_log "%s exist, trying to update." "$tool_path"
 			rm -fR "$tool_path"
 		else
-			printLog "$tool_path" "$tool_path does not exist, try to create new one."
+			boostan_log "%s does not exist, try to create new one." "$tool_path"
 		fi
 		svn checkout $BOOSTAN_REPO_PATH/$BOOSTAN_VERSION/$tool_path
-		printLog "$tool_path" "$tool_path is checked out."
+		boostan_log "%s is checked out." "$tool_path"
 		rm -fR $tool_path/.svn
 	done
-	cd "$curentPath"
+	return 0;
 }
 
-printConfigurations
-updateTools
