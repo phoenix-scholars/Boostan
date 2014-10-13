@@ -49,12 +49,15 @@ case $BOOSTAN_COMMAND in
 		;;
 	build)
 		boostan_build;
+		# TODO: maso 2014: check the result
 		;;
 	clean)
 		boostan_clean;
+		# TODO: maso 2014: check the result
 		;;
 	update)
 		boostan_update;
+		# TODO: maso 2014: check the result
 		;;
 	*)
 		boostan_log "The command is empty or unsupported."

@@ -53,11 +53,12 @@ function boostan_build_src() {
 	# Check the boostan styles
 	if [ ! -d "$BOOSTAN_WRK_DIR/boostan" ]; then
 		echo "Boostan styles does not exits?!";
+		boostan_log "Boostan styles does not exits in the path (%s)" "$BOOSTAN_WRK_DIR/boostan"
 		return 1;
 	fi
 	
 	#Make new document
-	cd "$BOOSTAN_WRK_DIR/src"
+	cd "$BOOSTAN_SRC_DIR"
 	xelatex -interaction=nonstopmode -synctex=-1 main.tex
 	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo
 	xelatex -interaction=nonstopmode -synctex=-1 main.tex
@@ -70,8 +71,9 @@ function boostan_build_src() {
 }
 
 function boostan_build(){
-	boostan_build_src
 	#boostan_build_svg
 	#boostan_build_umbrela
+	boostan_log "Trying to build the project source"
+	boostan_build_src
 	return 0;
 }

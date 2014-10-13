@@ -19,7 +19,10 @@
 
 # Clean project
 function boostan_clean(){
+	boostan_log "Trying to clean the output directory (%s)" "$BOOSTAN_OUT_DIR"
 	rm -f "$BOOSTAN_OUT_DIR/*"
+	
+	boostan_log "Trying to clean the temp directory (%s)" "$BOOSTAN_TMP_DIR"
 	rm -f "$BOOSTAN_TMP_DIR/*"
 	return 0;
 }
