@@ -21,10 +21,11 @@ BOOSTAN_INS_DIR=$(dirname $(dirname $TOOL_PATH))
 
 source $BOOSTAN_INS_DIR/bin/script/log.sh
 source $BOOSTAN_INS_DIR/bin/script/configure.sh
-#source $BOOSTAN_INS_DIR/bin/script/build.sh
+source $BOOSTAN_INS_DIR/bin/script/build.sh
 source $BOOSTAN_INS_DIR/bin/script/init.sh
 #source $BOOSTAN_INS_DIR/bin/script/make.sh
 #source $BOOSTAN_INS_DIR/bin/script/update.sh
+#source $BOOSTAN_INS_DIR/bin/script/clean.sh
 
 boostan_log "Print the configuration table."
 if [ "$BOOSTAN_VERBOSE" = true ] ; then
@@ -34,18 +35,23 @@ fi
 boostan_log "Start to pars the command"
 boostan_log "The command is : %s" $BOOSTAN_COMMAND
 case $BOOSTAN_COMMAND in
-	init)
-		boostan_init;
-		# TODO: maso 2014: check the result
-		;;
-	
 	help)
-		echo "No help availabel"
+		echo "No help available"
 		exit 0;
 		;;
 	version)
 		echo "Boostan V$BOOSTAN_VERSION"
 		boostan_log "The boostan version is %s" "$BOOSTAN_VERSION"
+		;;
+	init)
+		boostan_init;
+		# TODO: maso 2014: check the result
+		;;
+	build)
+		boostan_build;
+		;;
+	clean)
+		boostan_clean;
 		;;
 	*)
 		boostan_log "The command is empty or unsupported."
