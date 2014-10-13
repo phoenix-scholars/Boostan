@@ -25,7 +25,7 @@ source $BOOSTAN_INS_DIR/bin/script/build.sh
 source $BOOSTAN_INS_DIR/bin/script/init.sh
 #source $BOOSTAN_INS_DIR/bin/script/make.sh
 #source $BOOSTAN_INS_DIR/bin/script/update.sh
-#source $BOOSTAN_INS_DIR/bin/script/clean.sh
+source $BOOSTAN_INS_DIR/bin/script/clean.sh
 
 boostan_log "Print the configuration table."
 if [ "$BOOSTAN_VERBOSE" = true ] ; then
@@ -41,7 +41,7 @@ case $BOOSTAN_COMMAND in
 		;;
 	version)
 		echo "Boostan V$BOOSTAN_VERSION"
-		boostan_log "The boostan version is %s" "$BOOSTAN_VERSION"
+		boostan_log "Boostan version is %s" "$BOOSTAN_VERSION"
 		;;
 	init)
 		boostan_init;

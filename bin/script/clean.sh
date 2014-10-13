@@ -18,8 +18,8 @@
 #configure
 
 # Clean project
-boostan_clean(){
-	rm "$BOOSTAN_WRK_DIR/output/*.pdf"
-	rm "$BOOSTAN_WRK_DIR/output/*.gz"
+function boostan_clean(){
+	rm -f "$BOOSTAN_OUT_DIR/*"
+	rm -f "$BOOSTAN_TMP_DIR/*"
 	return 0;
 }
