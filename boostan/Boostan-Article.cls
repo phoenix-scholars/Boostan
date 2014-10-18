@@ -31,7 +31,7 @@
 \usepackage{graphicx}
 \usepackage{tikz,times}
 \usepackage{hyperref}
-\usepackage[sanitize={name=false,description=false,sort=false},nomain,xindy,acronym]{glossaries}
+\usepackage{../boostan/Boostan-Glossory}
 \usepackage{xepersian}
 
 
