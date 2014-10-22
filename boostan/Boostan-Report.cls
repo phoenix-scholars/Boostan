@@ -7,7 +7,6 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions 
 \LoadClass[11pt,a4paper,onecolumn]{article}
-% \LoadClass[book,a4paper]{memoir}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              package management       
@@ -46,11 +45,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{%
 	{./}%
-	{./Pic/}%
-	{./Pic/perm/}%
-	{./images/}%
 	{./image/}%
-	{/usr/share/texmf/tex/xelatex/rcisp/images}%
+	{../image/}%
 }
 
 \newcommand{\noimage}{%
@@ -78,11 +74,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                TITLE PAGE  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\maketitle}{%
-	\SimplePageTitle@proposal%
-%  	\SimplePageTitle@proposal@A%
-% 	\RCISPPageTitle@proposal%
-}
+%\renewcommand{\maketitle}{%
+%	\SimplePageTitle@proposal%
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   Text And paragraph
