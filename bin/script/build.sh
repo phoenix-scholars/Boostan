@@ -19,7 +19,7 @@
 
 #Make Project diagrams
 function boostan_build_umbrela() {
-	find "$PROJECT_FULL_PATH/attach" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
+	find "$BOOSTAN_WRK_DIR/attach" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
 	do
 		echo "Processing $file file..."
 	    filename=$(basename "$file")
@@ -36,7 +36,7 @@ function boostan_build_umbrela() {
 }
 
 function boostan_build_svg () {
-	find "$PROJECT_FULL_PATH/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
+	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
 	do
 		echo "Processing $file file..."
 	    filename=$(basename "$file")
@@ -48,6 +48,34 @@ function boostan_build_svg () {
 	done
 	return 0;
 }
+
+#
+# XXX: maso 1393/7:Libro office ODG
+# یک نوع از ساختارهای داده‌ای که معمولا برای ایجاد نمودار استفاده می‌شود، ساختارهای odg است. از این رو 
+# نیاز است که از این ساختار نیز حمایت شود. با فرض این که ابزارهای Libro office نصب است می‌توان با استفاده
+# از دستور زیر یک پرونده را به pdf و یا هر ساختار دیگری تبدیل کرد:
+# oodraw --headless --convert-to pdf [document.odg]
+#
+
+
+function boostan_build_odg () {
+	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
+	do
+		boostan_log "Processing \'%s\' file..." $file
+		filename=$(basename "$file")
+		directoryname=$(dirname "$file")
+		extension="${filename##*.}"
+		filename="${filename%.*}"
+		oodraw \
+			--headless \
+			--convert-to pdf \
+			--outdir "${directoryname}" \
+			"$file"
+		boostan_log "The output of the input odg file is stored in \'%s\'" "${directoryname}/${filename}.pdf"
+	done
+	return 0;
+}
+
 
 function boostan_build_src() {
 	# Check the boostan styles
@@ -73,6 +101,8 @@ function boostan_build_src() {
 function boostan_build(){
 	#boostan_build_svg
 	#boostan_build_umbrela
+	boostan_log "Trying to build the project ODG files"
+	boostan_build_odg
 	boostan_log "Trying to build the project source"
 	boostan_build_src
 	return 0;
