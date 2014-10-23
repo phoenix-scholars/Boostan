@@ -87,9 +87,12 @@ function boostan_build_src() {
 	
 	#Make new document
 	cd "$BOOSTAN_SRC_DIR"
-	xelatex -interaction=nonstopmode -synctex=-1 main.tex
+	xelatex  -synctex=1 -interaction=nonstopmode --src-specials main.tex
+	bibtex main
+	makeindex main.idx
 	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo
-	xelatex -interaction=nonstopmode -synctex=-1 main.tex
+	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
+	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
 	
 	#Deploy
 	cp main.pdf "$BOOSTAN_WRK_DIR/output/${PROJECT_NAME}.pdf"
