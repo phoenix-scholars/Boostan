@@ -105,7 +105,6 @@
 \lstset{ %
 	language=Java,%
 	basicstyle={\ttfamily\footnotesize},%
-	aboveskip={0ex}%
 	numbers=left,%
 	numberstyle=\footnotesize,%
 	stepnumber=5,%
