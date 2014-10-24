@@ -35,6 +35,12 @@ function boostan_build_umbrela() {
 	return 0;
 }
 
+#
+# تمام SVG‌ها را به PS تبدیل می‌کند
+#
+# به صورت مستقیم نمی‌توان این نوع تصاویر را در متن آورد از این رو نیاز است آنها را به
+# ساختارهای دیگری تبدیل کنند.
+#
 function boostan_build_svg () {
 	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
 	do
@@ -43,8 +49,10 @@ function boostan_build_svg () {
 		directoryname=$(dirname "$file")
 	    extension="${filename##*.}"
 	    filename="${filename%.*}"
-	    echo FILE: "${directoryname}/${filename}.pdf"
-	    inkscape --export-pdf="${directoryname}/${filename}.pdf" "$file"
+	    echo FILE: "${directoryname}/${filename}.ps"
+	    inkscape \
+	    	--export-text-to-path \
+	    	--export-ps="${directoryname}/${filename}.ps" "$file"
 	done
 	return 0;
 }
@@ -56,8 +64,6 @@ function boostan_build_svg () {
 # از دستور زیر یک پرونده را به pdf و یا هر ساختار دیگری تبدیل کرد:
 # oodraw --headless --convert-to pdf [document.odg]
 #
-
-
 function boostan_build_odg () {
 	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
 	do
@@ -75,7 +81,6 @@ function boostan_build_odg () {
 	done
 	return 0;
 }
-
 
 function boostan_build_src() {
 	# Check the boostan styles
@@ -102,9 +107,9 @@ function boostan_build_src() {
 }
 
 function boostan_build(){
+	#boostan_build_umbrela
 	boostan_log "Trying to build the project SVG files"
 	boostan_build_svg
-	#boostan_build_umbrela
 	boostan_log "Trying to build the project ODG files"
 	boostan_build_odg
 	boostan_log "Trying to build the project source"

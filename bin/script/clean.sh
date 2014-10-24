@@ -17,12 +17,85 @@
 #################################################################################
 #configure
 
+# Clean ODG
+function boostan_build_odg () {
+	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
+	do
+		boostan_log "Processing \'%s\' file..." $file
+		filename=$(basename "$file")
+		directoryname=$(dirname "$file")
+		extension="${filename##*.}"
+		filename="${filename%.*}"
+		boostan_log "The output of the input odg file is stored in \'%s\'" "${directoryname}/${filename}.pdf"
+		rm -f "${directoryname}/${filename}.pdf"
+	done
+	return 0;
+}
+
+#clean svg
+function boostan_clean_svg () {
+	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
+	do
+	    filename=$(basename "$file")
+		directoryname=$(dirname "$file")
+	    extension="${filename##*.}"
+	    filename="${filename%.*}"
+	    boostan_log "Try to delete the file \'%s\'." "${directoryname}/${filename}.ps"
+	    rm -f "${directoryname}/${filename}.ps"
+	done
+	return 0;
+}
+
 # Clean project
-function boostan_clean(){
+function boostan_clean_project(){
 	boostan_log "Trying to clean the output directory (%s)" "$BOOSTAN_OUT_DIR"
-	rm -f "$BOOSTAN_OUT_DIR/*"
+	cd "$BOOSTAN_OUT_DIR"
+	rm -fR ./*
 	
 	boostan_log "Trying to clean the temp directory (%s)" "$BOOSTAN_TMP_DIR"
-	rm -f "$BOOSTAN_TMP_DIR/*"
+	cd "$BOOSTAN_TMP_DIR"
+	rm -fR ./*
+	
+	cd "$BOOSTAN_WRK_DIR"
+	return 0;
+}
+
+
+function boostan_clean_src() {
+	# Check the boostan styles
+	if [ ! -d "$BOOSTAN_WRK_DIR/boostan" ]; then
+		echo "Boostan styles does not exits?!";
+		boostan_log "Boostan styles does not exits in the path (%s)" "$BOOSTAN_WRK_DIR/boostan"
+		return 1;
+	fi
+	
+	#Make new document
+	cd "$BOOSTAN_SRC_DIR"
+	rm -f \
+		*.acn \
+		*.aux \
+		*.bbl \
+		*.blg \
+		*.idx \
+		*.ilg \
+		*.ind \
+		*.glg \
+		*.glo \
+		*.gls \
+		*.idx \
+		*.xdy \
+		*.log \
+		*.synctex.gz \
+		main.pdf
+		
+	cd "$BOOSTAN_WRK_DIR"
+	return 0;
+}
+
+function boostan_clean(){
+	boostan_clean_project;
+	boostan_build_odg;
+	boostan_clean_svg;
+	boostan_clean_src;
 	return 0;
 }
