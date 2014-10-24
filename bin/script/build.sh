@@ -102,7 +102,8 @@ function boostan_build_src() {
 }
 
 function boostan_build(){
-	#boostan_build_svg
+	boostan_log "Trying to build the project SVG files"
+	boostan_build_svg
 	#boostan_build_umbrela
 	boostan_log "Trying to build the project ODG files"
 	boostan_build_odg

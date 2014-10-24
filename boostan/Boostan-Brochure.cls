@@ -541,12 +541,13 @@
 \usepackage{../boostan/Boostan-Glossory}
 \usepackage{xepersian}
 \usepackage{../boostan/Boostan-Title}
+\usepackage{../boostan/Boostan-List}
+\usepackage{setspace}
 
-
-\settextfont[Scale=1.15]{B Nazanin}
+\settextfont[Scale=1.3]{B Nazanin}
 \setlatintextfont[Scale=1]{Times New Roman}
-\setdigitfont[Scale=1.1]{XB Zar}
-
+\setdigitfont[Scale=1.2]{XB Zar}
+\doublespacing
 
 \endinput
 %%
