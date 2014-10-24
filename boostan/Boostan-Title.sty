@@ -157,4 +157,51 @@
 	\makeatother
 }
 
+\makeatletter
+\newcommand{\RCISPPageTitle@presentation}{%
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}
+% 	\defpersianfont\pejoheshfontP[Scale=1.4]{Titr Bold}
+% 	\defpersianfont\groupfontP[Scale=1.4]{Zar}
+% 	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+% 	\defpersianfont\proposalFontP[Scale=1.8]{B Nazanin}
+% 	\defpersianfont\InstituteFontP[Scale=1.2]{B Nazanin}
+% 	\defpersianfont\tableFontP[Scale=1]{B Nazanin}
+	\thispagestyle{empty}%
+	{% عنوان بالای صفحه
+		\begin{center}%
+			{پژوهشکده \@institute}% Publisher
+			\\[0.1\baselineskip]%
+			{گروه \@group}%
+			\\[2\baselineskip]%
+		\end{center}%
+	}
+	{% عنوان مستند
+		\begin{center}%
+			{\titlefont\@subtitle}%
+			\\%[1\baselineskip]%
+			{\@title}%
+		\end{center}%
+	}%
+	{% خصوصیت‌های مستند
+		\vfill
+		\begin{center}%
+			\begin{tabular}{@{\vrule width 2pt} p{0.2\textwidth} | p{0.6\textwidth}@{\vrule width 2pt}} \thickhline%
+			عنوان پروژه & \@project \\ \hline%
+			پژوهشکده     & \@institute \\ \hline%
+			گروه        & \@group \\ \hline%
+			مدیر پروژه  & \@manager \\ \hline%
+			نویسندگان    & \@author \\ \hline%
+			ویرایشگر    & \@editor \\ \hline%
+			نوع ارائه & \@type \\ \hline%
+			جلسه ارایه & \@session \\ \hline%
+			تاریخ ارائه & \@date \\ \hline%
+			شماره نسخه  & \@version \\ 
+			\thickhline%
+			\end{tabular}%
+		\end{center}%
+	}%
+	\clearpage
+}
+\makeatother
+
 \endinput
