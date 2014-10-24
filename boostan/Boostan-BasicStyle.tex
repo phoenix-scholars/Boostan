@@ -1,0 +1,61 @@
+% تعریف برخی دستورات 
+\newcommand{\goodRef}{}
+\newcommand{\probsec}{}
+\newcommand{\idx}{}
+\newcommand{\arc}{}
+\newcommand{\arcO}{}
+\newcommand{\tick}{}
+\newcommand{\tickO}{}
+\newcommand{\X}{}
+\newcommand{\XO}{}
+\newcommand{\hand}{}
+\newcommand{\handO}{}
+\newcommand{\tree}{}
+\newcommand{\treeO}{}
+\newcommand{\two}{}
+\newcommand{\twoO}{}
+\newcommand{\sci}{}
+\newcommand{\sciO}{}
+\newcommand{\starE}{}
+\newcommand{\starEO}{}
+\newcommand{\music}{}
+\newcommand{\musicO}{}
+\newcommand{\gol}{}
+\newcommand{\golO}{}
+
+%%% تنظیم فاصله خطوط در متن اصلی
+\newlength{\baselineskipVar}
+%%% تنظیم فاصله خطوط در فهرست‌ها
+\newlength{\listlineskipVar}
+%%% تعریف فونت‌‌های پیش فرض برای متن
+\newcommand{\defaultFont}{}
+
+%%% OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+%%% تعریف یکسری دستور برای صفحه عنوان 
+
+%% توسط دستور \myData می توانید تاریخ و ساعت را وارد متن خود کنید. 
+\newcommand{\myData}{
+\شمارجدید\ساعت
+\شمارجدید\دقیقه
+\تر\زمان‌به‌وقت‌امروز{%
+\ساعت \زمان \تقسیم \ساعت 60  ساعت \محتوای\ساعت {}
+\دقیقه \زمان \ضرب \ساعت 60 \بیفزابر \دقیقه -\ساعت
+ \گرعدد\دقیقه=0\گرنه و \محتوای\دقیقه{} دقیقه\رگ }
+ \امروز{} در  \زمان‌به‌وقت‌امروز{} 
+} %M
+
+
+
+
+
+\newcommand{\Godpage}[1]{}
+\newcommand{\pejoheshTitle}[1]{}
+\newcommand{\lshortTitle}[2]{}
+\newcommand{\presTitle}{}
+
+
+%%% اضافه کردن نماد استقلال به علایم ریاضی
+\newcommand{\Perp}{\perp \! \! \! \perp}
+\newcommand{\independent}{\protect\mathpalette{\protect\independenT}{\perp}} \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+
