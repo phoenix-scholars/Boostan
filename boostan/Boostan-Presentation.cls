@@ -9,7 +9,7 @@
 \ProcessOptions
 \LoadClass[11pt,oneside]{bidipresentation}
 
-\usepackage{../style/Boostan-Variable}
+\usepackage{../boostan/Boostan-Variable}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[RL]{flowfram}
@@ -33,8 +33,8 @@
 \usepackage{pgfgantt}
 \usepackage{eso-pic}
 \usepackage{pst-fun}
-\usepackage{../style/Boostan-Environment}
-\usepackage{../style/Boostan-Title}
+\usepackage{../boostan/Boostan-Environment}
+\usepackage{../boostan/Boostan-Title}
 \usepackage{colortbl}
 \usepackage{graphicx}
 \usepackage{lastpage}
