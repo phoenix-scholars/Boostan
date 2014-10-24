@@ -193,6 +193,7 @@
 	{./}%
 	{./Pic/}%
 	{./images/}%
+	{./image/}%
 	{/usr/share/texmf/tex/xelatex/rcisp/images/}%
 	{/home/abolfazl/MyData/Picture/Other/book/}%
 }
