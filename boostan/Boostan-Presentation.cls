@@ -37,6 +37,7 @@
 \usepackage{../boostan/Boostan-Title}
 \usepackage{colortbl}
 \usepackage{graphicx}
+\usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{pdfpages}
 \usepackage{xparse}
@@ -45,6 +46,8 @@
 \usepackage{hyperref}
 \usepackage[sanitize={name=false,description=false,sort=false,symbol=false},nomain,xindy,acronym]{glossaries}
 \usepackage{xepersian}
+
+
 
 
 
@@ -60,7 +63,8 @@
 	bottom=10mm%
 }
 
-
+% Page number
+\rfoot{\thepage}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
