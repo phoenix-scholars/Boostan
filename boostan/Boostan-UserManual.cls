@@ -19,19 +19,46 @@
 %                        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Boostan-Proposal}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProvidesClass{Boostan-UserManual}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 \ProcessOptions 
-% \LoadClass[11pt,a4paper,onecolumn]{article}
 \LoadClass[book,a4paper]{memoir}
 
-\usepackage{../style/Boostan-Thesis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              package management       
+%                        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{../boostan/Boostan-Variable}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{draftwatermark}
+\usepackage{fourier}
+\usepackage[scaled=.92]{helvet}
+\usepackage{calc}
+\usepackage{pifont}
+\usepackage[font=footnotesize,labelformat=empty]{subfig}
+\usepackage{multirow}
+\usepackage{makeidx}
+\usepackage{framed}
+\usepackage{../boostan/Boostan-Environment}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{../boostan/Boostan-Glossory}
+\usepackage{xepersian}
+\usepackage{../boostan/Boostan-Title}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Page Setup       
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\geometry{top=17.7mm, bottom=20mm, left=27.7mm, right=25mm}
+\geometry{top=3.5cm, bottom=2.5cm, left=2.5cm, right=3.5cm}
 \setlength{\columnwidth}{66.7mm}
 \setlength{\columnsep}{10mm}
 
@@ -40,18 +67,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\maketitle}{%
 	\SimplePageTitle@proposal%
-% 	\SimplePageTitle@proposal@A%
-% 	\RCISPPageTitle@proposal%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   Text And paragraph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \renewcommand{\baselinestretch}{1.5}
-\settextfont[Scale=1.4]{B Nazanin} 
-\setlatintextfont[Scale=1.2]{Times New Roman}
-\linespread{1.5}
-
+\makeatletter
+\settextfont[Scale=1.3]{B Nazanin} 
+\setlatintextfont[Scale=1]{Times New Roman}
+\linespread{2}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              List       
@@ -120,6 +145,33 @@
 \makeatother
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Graphics
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{%
+	{./}%
+	{../}%
+	{./Pic/}%
+	{./Pic/perm/}%
+	{./images/}%
+	{./image/}%
+	{/usr/share/texmf/tex/xelatex/rcisp/images}%
+}
+
+\newcommand{\noimage}{%
+  \setlength{\fboxsep}{-\fboxrule}%
+  \fbox{\phantom{\rule{150pt}{100pt}}}% Framed box
+}
+
+\makeatletter
+\patchcmd{\Gin@ii}
+  {\begingroup}% <search>
+  {\begingroup\renewcommand{\@latex@error}[2]{\noimage}}% <replace>
+  {}% <success>
+  {}% <failure>
+\makeatother
 
 \endinput
 
