@@ -42,7 +42,12 @@ function boostan_build_umbrela() {
 # ساختارهای دیگری تبدیل کنند.
 #
 function boostan_build_svg () {
-	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
+	boostan_log "Looking for SVG files in \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+	if [ -d "$BOOSTAN_WRK_DIR/$1" ]; then
+		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+		return 1;
+	fi
+	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
 	do
 		echo "Processing $file file..."
 	    filename=$(basename "$file")
@@ -64,8 +69,15 @@ function boostan_build_svg () {
 # از دستور زیر یک پرونده را به pdf و یا هر ساختار دیگری تبدیل کرد:
 # oodraw --headless --convert-to pdf [document.odg]
 #
+# Param 1 : root path
+#
 function boostan_build_odg () {
-	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
+	boostan_log "Looking for ODG files in \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+	if [ ! -d "$BOOSTAN_WRK_DIR/$1" ]; then
+		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+		return 1;
+	fi
+	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
 	do
 		boostan_log "Processing \'%s\' file..." $file
 		filename=$(basename "$file")
@@ -109,9 +121,13 @@ function boostan_build_src() {
 function boostan_build(){
 	#boostan_build_umbrela
 	boostan_log "Trying to build the project SVG files"
-	boostan_build_svg
+	boostan_build_svg image
+	boostan_build_svg src/image
+	boostan_build_svg attach
 	boostan_log "Trying to build the project ODG files"
-	boostan_build_odg
+	boostan_build_odg image
+	boostan_build_odg src/image
+	boostan_build_odg attach
 	boostan_log "Trying to build the project source"
 	boostan_build_src
 	return 0;

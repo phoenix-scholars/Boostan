@@ -18,8 +18,8 @@
 #configure
 
 # Clean ODG
-function boostan_build_odg () {
-	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
+function boostan_clean_odg () {
+	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
 	do
 		boostan_log "Processing \'%s\' file..." $file
 		filename=$(basename "$file")
@@ -34,7 +34,7 @@ function boostan_build_odg () {
 
 #clean svg
 function boostan_clean_svg () {
-	find "$BOOSTAN_WRK_DIR/src/image" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
+	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
 	do
 	    filename=$(basename "$file")
 		directoryname=$(dirname "$file")
@@ -93,9 +93,13 @@ function boostan_clean_src() {
 }
 
 function boostan_clean(){
-	boostan_clean_project;
-	boostan_build_odg;
-	boostan_clean_svg;
-	boostan_clean_src;
+	boostan_clean_project
+	boostan_clean_odg image
+	boostan_clean_odg src/image
+	boostan_clean_odg attach
+	boostan_clean_svg image
+	boostan_clean_svg src/image
+	boostan_clean_svg attach
+	boostan_clean_src
 	return 0;
 }
