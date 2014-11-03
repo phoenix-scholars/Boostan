@@ -85,6 +85,7 @@ function boostan_clean_src() {
 		*.idx \
 		*.xdy \
 		*.log \
+		*.out \
 		*.synctex.gz \
 		main.pdf
 		

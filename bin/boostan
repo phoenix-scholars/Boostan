@@ -26,6 +26,7 @@ source $BOOSTAN_INS_DIR/bin/script/init.sh
 #source $BOOSTAN_INS_DIR/bin/script/make.sh
 source $BOOSTAN_INS_DIR/bin/script/update.sh
 source $BOOSTAN_INS_DIR/bin/script/clean.sh
+source $BOOSTAN_INS_DIR/bin/script/disconnect.sh
 
 boostan_log "Print the configuration table."
 if [ "$BOOSTAN_VERBOSE" = true ] ; then
@@ -53,6 +54,11 @@ case $BOOSTAN_COMMAND in
 		;;
 	clean)
 		boostan_clean;
+		# TODO: maso 2014: check the result
+		;;
+	distclean)
+		boostan_clean;
+		boostan_disconnect;
 		# TODO: maso 2014: check the result
 		;;
 	update)
