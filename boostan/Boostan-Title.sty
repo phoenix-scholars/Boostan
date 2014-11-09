@@ -1,3 +1,19 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% حق نشر 1392-1402 دانش پژوهان ققنوس
+% حقوق این اثر محفوظ است.
+% 
+% استفاده مجدد از متن و یا نتایج این اثر در هر شکل غیر قانونی است مگر اینکه متن حق
+% نشر بالا در ابتدای تمامی مستندهای و یا برنامه‌های به دست آمده از این اثر
+% بازنویسی شود. این کار باید برای تمامی مستندها، متنهای تبلیغاتی برنامه‌های
+% کاربردی و سایر مواردی که از این اثر به دست می‌آید مندرج شده و در قسمت تقدیر از
+% صاحب این اثر نام برده شود.
+% 
+% نام گروه دانش پژوهان ققنوس ممکن است در محصولات به در آمده شده از این اثر درج
+% نشود که در این حالت با مطالبی که در بالا اورده شده در تضاد نیست. برای اطلاع
+% بیشتر در مورد حق نشر آدرس زیر مراجعه کنید:
+% 
+% http://dpq.co.ir/licence
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{Boostan-Title}[1392/01/11 v0.01 LaTeX package for title]
@@ -140,5 +156,52 @@
 	\clearpage
 	\makeatother
 }
+
+\makeatletter
+\newcommand{\RCISPPageTitle@presentation}{%
+	\defpersianfont\titlefont[Scale=3]{B Nazanin}
+% 	\defpersianfont\pejoheshfontP[Scale=1.4]{Titr Bold}
+% 	\defpersianfont\groupfontP[Scale=1.4]{Zar}
+% 	\defpersianfont\subtitlefont[Scale=1.4]{B Nazanin}
+% 	\defpersianfont\proposalFontP[Scale=1.8]{B Nazanin}
+% 	\defpersianfont\InstituteFontP[Scale=1.2]{B Nazanin}
+% 	\defpersianfont\tableFontP[Scale=1]{B Nazanin}
+	\thispagestyle{empty}%
+	{% عنوان بالای صفحه
+		\begin{center}%
+			{پژوهشکده \@institute}% Publisher
+			\\[0.1\baselineskip]%
+			{گروه \@group}%
+			\\[2\baselineskip]%
+		\end{center}%
+	}
+	{% عنوان مستند
+		\begin{center}%
+			{\titlefont\@subtitle}%
+			\\%[1\baselineskip]%
+			{\@title}%
+		\end{center}%
+	}%
+	{% خصوصیت‌های مستند
+		\vfill
+		\begin{center}%
+			\begin{tabular}{@{\vrule width 2pt} p{0.2\textwidth} | p{0.6\textwidth}@{\vrule width 2pt}} \thickhline%
+			عنوان پروژه & \@project \\ \hline%
+			پژوهشکده     & \@institute \\ \hline%
+			گروه        & \@group \\ \hline%
+			مدیر پروژه  & \@manager \\ \hline%
+			نویسندگان    & \@author \\ \hline%
+			ویرایشگر    & \@editor \\ \hline%
+			نوع ارائه & \@type \\ \hline%
+			جلسه ارایه & \@session \\ \hline%
+			تاریخ ارائه & \@date \\ \hline%
+			شماره نسخه  & \@version \\ 
+			\thickhline%
+			\end{tabular}%
+		\end{center}%
+	}%
+	\clearpage
+}
+\makeatother
 
 \endinput

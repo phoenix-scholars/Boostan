@@ -14,24 +14,3 @@
 % 
 % http://dpq.co.ir/licence
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                      List       
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%
-% دستوراتی برای محیط itemize برای حل مشکل قرار دادن bullet و circle در آن.
-% 
-\makeatletter
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand{\labelitemii}{$\circ$}
-\makeatother
-
-\makeatletter
-\renewcommand{\figurename}{شکل}
-\renewcommand{\listfigurename}{فهرست شکلها}
-\renewcommand{\listtablename }{فهرست جدولها}
-\makeatother
-
-
-\endinput

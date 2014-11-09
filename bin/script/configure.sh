@@ -15,62 +15,55 @@
 # 
 # http://dpq.co.ir/licence
 #################################################################################
-#configure
-TOOL_PATH=$(realpath $0)
 
-PROJECT_PATH=`pwd`
-PROJECT_FULL_PATH=`dirname "$PROJECT_PATH"`
-PROJECT_NAME=`basename "$PROJECT_FULL_PATH"`
-
-BOOSTAN_VERSION=trunk
+BOOSTAN_VERSION=branches/0.1.1
 BOOSTAN_REPO_PATH=https://github.com/phoenix-scholars/Boostan
 
-function printLog(){
-	printf "| %20s | %110s |\n" "$1" "$2"
-}
 
-function printLogTitle(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
+BOOSTAN_BIN_DIR=$BOOSTAN_INS_DIR/bin
+BOOSTAN_DOC_DIR=$BOOSTAN_INS_DIR/doc
+BOOSTAN_STY_DIR=$BOOSTAN_INS_DIR
+BOOSTAN_WRK_DIR=$PWD
+BOOSTAN_SRC_DIR=$BOOSTAN_WRK_DIR/src
+BOOSTAN_TMP_DIR=$BOOSTAN_WRK_DIR/tmp
+BOOSTAN_OUT_DIR=$BOOSTAN_WRK_DIR/output
 
-function printLogFooter(){
-	for((i=0;i<137;i++));
-	do
-	    printf "-"
-	done
-	printf "\n"
-}
+BOOSTAN_COMMAND=
+BOOSTAN_VERBOSE=false
 
-function printConfigurations(){
-	printLogTitle
-	printLog PROJECT_PATH "$PROJECT_PATH"
-	printLog PROJECT_FULL_PATH "$PROJECT_FULL_PATH"
-	printLog PROJECT_NAME  "$PROJECT_NAME"
-	printLogFooter
-}
+PROJECT_NAME=`basename "$BOOSTAN_WRK_DIR"`
+ 
+while getopts ":c:vV" opt; do
+	case $opt in
+		c)
+			BOOSTAN_COMMAND=$OPTARG
+			boostan_log "The command is : %s"  "$OPTARG"
+			;;
+		V)
+			BOOSTAN_VERBOSE=true
+			boostan_log "The verbose mode is active"
+			;;
+		v)
+			BOOSTAN_COMMAND=version
+			boostan_log "The command is set to version"
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			exit 1
+			;;
+		:)
+			echo "Option -$OPTARG requires an argument." >&2
+			exit 1
+			;;
+	esac
+done
 
-# Check the Boostan styles and tools
-function updateTools(){
-	currentPath=`pwd`
-	tools_path=(boostan boostan-en)
-	for tool_path in ${tools_path[*]}
-	do
-		if [ -d "$tool_path" ]; then
-			printLog "$tool_path" "$tool_path exist, and we try to update."
-			rm -fR "$tool_path"
-		else
-			printLog "$tool_path" "$tool_path does not exist, try to create new one."
-		fi
-		svn checkout $BOOSTAN_REPO_PATH/$BOOSTAN_VERSION/$tool_path
-		printLog "$tool_path" "$tool_path is checked out."
-		rm -fR $tool_path/.svn
-	done
-	cd "$curentPath"
-}
 
-printConfigurations
-updateTools
+
+function boostan_configure_print(){
+	boostan_log_print_header "Here is the configuration table"
+	boostan_log_print BOOSTAN_WRK_DIR "$BOOSTAN_WRK_DIR"
+	boostan_log_print BOOSTAN_STY_DIR "$BOOSTAN_STY_DIR"
+	boostan_log_print PROJECT_NAME  "$PROJECT_NAME"
+	boostan_log_print_footer
+}

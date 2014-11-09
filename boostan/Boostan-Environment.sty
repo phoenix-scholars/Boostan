@@ -1,4 +1,19 @@
-
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% حق نشر 1392-1402 دانش پژوهان ققنوس
+% حقوق این اثر محفوظ است.
+% 
+% استفاده مجدد از متن و یا نتایج این اثر در هر شکل غیر قانونی است مگر اینکه متن حق
+% نشر بالا در ابتدای تمامی مستندهای و یا برنامه‌های به دست آمده از این اثر
+% بازنویسی شود. این کار باید برای تمامی مستندها، متنهای تبلیغاتی برنامه‌های
+% کاربردی و سایر مواردی که از این اثر به دست می‌آید مندرج شده و در قسمت تقدیر از
+% صاحب این اثر نام برده شود.
+% 
+% نام گروه دانش پژوهان ققنوس ممکن است در محصولات به در آمده شده از این اثر درج
+% نشود که در این حالت با مطالبی که در بالا اورده شده در تضاد نیست. برای اطلاع
+% بیشتر در مورد حق نشر آدرس زیر مراجعه کنید:
+% 
+% http://dpq.co.ir/licence
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -28,125 +43,216 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Algorithem and programming     
-%                        
+%                       
+% ABAP			IDL4 			PL/I
+% ACSL 			inform 			Plasm
+% Ada 			Java4 			POV
+% Algol 		JVMIS 			Prolog
+% Ant 			ksh 			Promela
+% Assembler 	Lisp4 			Python
+% Awk			Logo 			R
+% bash 			make4 			Reduce
+% Basic 		Mathematica1,4 	Rexx
+% C4 			Matlab 			RSL
+% C++			Mercury 		Ruby
+% Caml4 		MetaPost 		S4
+% Clean 		Miranda 		SAS
+% Cobol4 		Mizar 			Scilab
+% Comal 		ML 				sh
+% csh 			Modelica3 		SHELXL
+% Delphi 		Modula-2 		Simula4
+% Eiffel 		MuPAD 			SQL
+% Elan 			NASTRAN 		tcl4
+% erlang 		Oberon-2 		TeX4
+% Euphoria 		OCL4 			VBScript
+% Fortran4 		Octave 			Verilog
+% GCL 			Oz 				VHDL4
+% Gnuplot 		Pascal4 		VRML4
+% Haskell 		Perl 			XML
+% HTML 			PHP 			XSLT 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\lstset{ %
-	language=Java,                  % the language of the code
-	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-	numbers=left,                   % where to put the line-numbers
-	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-	stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
-	                                % will be numbered
-	numbersep=5pt,                  % how far the line-numbers are from the code
-	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-	showspaces=false,               % show spaces adding particular underscores
-	showstringspaces=false,         % underline spaces within strings
-	showtabs=false,                 % show tabs within strings adding particular underscores
-	frame=single,                   % adds a frame around the code
-	tabsize=2,                      % sets default tabsize to 2 spaces
-	captionpos=b,                   % sets the caption-position to bottom
-	breaklines=true,                % sets automatic line breaking
-	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-	title=\lstname,                 % show the filename of files included with \lstinputlisting;
-	                                % also try caption instead of title
-	escapeinside={\%*}{*)},         % if you want to add a comment within your code
-	morekeywords={*,...}            % if you want to add more keywords to the set
-}
 
-\lstnewenvironment{Config}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
+\lstnewenvironment{ABAP}[1][]{%
 	\latin%
-	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+	\lstset{%
+		language=ABAP,%
+		#1%
+	}%
 }{%
 	\endlatin%
-	\endminipage%
 }
 
-\lstnewenvironment{config}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
+\lstnewenvironment{ACSL}[1][]{%
 	\latin%
-	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+	\lstset{%
+		language=ACSL,%
+		#1%
+	}%
 }{%
 	\endlatin%
-	\endminipage%
 }
+
+\lstnewenvironment{Ada}[1][]{%
+	\latin%
+	\lstset{%
+		language=Ada,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{Algol}[1][]{%
+	\latin%
+	\lstset{%
+		language=Algol,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{Ant}[1][]{%
+	\latin%
+	\lstset{%
+		language=Ant,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{Assembler}[1][]{%
+	\latin%
+	\lstset{%
+		language=Assembler,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{Awk}[1][]{%
+	\latin%
+	\lstset{%
+		language=Awk,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+% 
+% محیط خط فرمان
+% 
+% این محیط مانند خط فرمان لینوکس است و واژه‌های کلیدی آن را
+% می‌شناسد
+% 
+\lstnewenvironment{bash}[1][]{%
+	\latin%
+	\lstset{%
+		language=bash,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+% 
+% محیط خط فرمان
+% 
+% این محیط مانند خط فرمان لینوکس است و واژه‌های کلیدی آن را
+% می‌شناسد
+% 
+% \deprecated به جای استفاده از این محیط محیط bash را به کار برید
+%
+\lstnewenvironment{shell}{%
+	\latin%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
 
 \lstnewenvironment{C++}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
 	\latin%
-	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
+	\lstset{%
+		language=C++,%
+		#1%
+	}%
 }{%
 	\endlatin%
-	\endminipage%
 }
 
 \lstnewenvironment{C}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
 	\latin%
-	\lstset{language=C++,basicstyle=\ttfamily\footnotesize,frame=single,#1}%
-}{%
-	\endlatin%
-	\endminipage%
-}
-
-\lstnewenvironment{xml}{%
-	\latin%
-	\lstset{language=Java}%
+	\lstset{%
+		language=C,%
+		#1%
+	}%
 }{%
 	\endlatin%
 }
 
-\lstnewenvironment{shell}{%
+\lstnewenvironment{Config}[1][]{%
 	\latin%
-	\lstset{language=Java}%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{config}[1][]{%
+	\latin%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
 }{%
 	\endlatin%
 }
 
 \lstnewenvironment{ned}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
 	\latin%
 	\lstset{%
 		language=C++,%
-		basicstyle=\ttfamily\footnotesize,%
-		frame=single,%
 		#1%
 	}%
 }{%
 	\endlatin%
-	\endminipage
 }
 
 \lstnewenvironment{ini}[1][]{%
-	\hfil%
-	\minipage{\linewidth}%
 	\latin%
 	\lstset{%
 		language=Java,%
-		basicstyle=\ttfamily\footnotesize,%
-		frame=single,%
 		#1%
 	}%
 }{%
 	\endlatin%
-	\endminipage
 }
 
 \lstnewenvironment{java}[1][]{%
 	\latin%
-	\lstset{language=Java}%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
 }{%
 	\endlatin%
 }
 
 \lstnewenvironment{Java}[1][]{%
 	\latin%
-	\lstset{language=Java}%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
 }{%
 	\endlatin%
 }
@@ -154,10 +260,57 @@
 
 \lstnewenvironment{asn1}[1][]{%
 	\latin%
-	\lstset{language=Java}%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
 }{%
 	\endlatin%
 }
+
+\lstnewenvironment{SQL}[1][]{%
+	\latin%
+	\lstset{%
+		language=SQL,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{XML}[1][]{%
+	\latin%
+	\lstset{%
+		language=SQL,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+%
+% \deprecated به جای استفاده از این محیط محیط XML را به کار ببرید.
+%
+\lstnewenvironment{xml}{%
+	\latin%
+	\lstset{%
+		language=Java,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
+\lstnewenvironment{XSLT}[1][]{%
+	\latin%
+	\lstset{%
+		language=XSLT,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
+
 
 
 \endinput

@@ -15,54 +15,23 @@
 # 
 # http://dpq.co.ir/licence
 #################################################################################
-TOOL_PATH=$(realpath $0)
-BOOSTAN_INS_DIR=$(dirname $(dirname $TOOL_PATH))
+#configure
 
-
-source $BOOSTAN_INS_DIR/bin/script/log.sh
-source $BOOSTAN_INS_DIR/bin/script/configure.sh
-source $BOOSTAN_INS_DIR/bin/script/build.sh
-source $BOOSTAN_INS_DIR/bin/script/init.sh
-#source $BOOSTAN_INS_DIR/bin/script/make.sh
-source $BOOSTAN_INS_DIR/bin/script/update.sh
-source $BOOSTAN_INS_DIR/bin/script/clean.sh
-
-boostan_log "Print the configuration table."
-if [ "$BOOSTAN_VERBOSE" = true ] ; then
-	boostan_configure_print
-fi
-
-boostan_log "Start to pars the command"
-boostan_log "The command is : %s" $BOOSTAN_COMMAND
-case $BOOSTAN_COMMAND in
-	help)
-		echo "No help available"
-		exit 0;
-		;;
-	version)
-		echo "Boostan V$BOOSTAN_VERSION"
-		boostan_log "Boostan version is %s" "$BOOSTAN_VERSION"
-		;;
-	init)
-		boostan_init;
-		# TODO: maso 2014: check the result
-		;;
-	build)
-		boostan_build;
-		# TODO: maso 2014: check the result
-		;;
-	clean)
-		boostan_clean;
-		# TODO: maso 2014: check the result
-		;;
-	update)
-		boostan_update;
-		# TODO: maso 2014: check the result
-		;;
-	*)
-		boostan_log "The command is empty or unsupported."
-		echo "The command is empty/unsupported, type boostan -c help for more information."
-		exit 2;
-		;;
-esac
+# Check the Boostan styles and tools
+function boostan_update(){
+	tools_path=(boostan boostan-en)
+	for tool_path in ${tools_path[*]}
+	do
+		if [ -d "$tool_path" ]; then
+			boostan_log "%s exist, trying to update." "$tool_path"
+			rm -fR "$tool_path"
+		else
+			boostan_log "%s does not exist, try to create new one." "$tool_path"
+		fi
+		svn checkout $BOOSTAN_REPO_PATH/$BOOSTAN_VERSION/$tool_path
+		boostan_log "%s is checked out." "$tool_path"
+		rm -fR $tool_path/.svn
+	done
+	return 0;
+}
 

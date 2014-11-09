@@ -15,54 +15,42 @@
 # 
 # http://dpq.co.ir/licence
 #################################################################################
-TOOL_PATH=$(realpath $0)
-BOOSTAN_INS_DIR=$(dirname $(dirname $TOOL_PATH))
 
 
-source $BOOSTAN_INS_DIR/bin/script/log.sh
-source $BOOSTAN_INS_DIR/bin/script/configure.sh
-source $BOOSTAN_INS_DIR/bin/script/build.sh
-source $BOOSTAN_INS_DIR/bin/script/init.sh
-#source $BOOSTAN_INS_DIR/bin/script/make.sh
-source $BOOSTAN_INS_DIR/bin/script/update.sh
-source $BOOSTAN_INS_DIR/bin/script/clean.sh
+function boostan_log(){
+	if [ "$BOOSTAN_VERBOSE" = true ] ; then
+		printf "[Boostan $BOOSTAN_VERSION] "
+		printf "$@"
+		printf "\n"
+	fi
+}
 
-boostan_log "Print the configuration table."
-if [ "$BOOSTAN_VERBOSE" = true ] ; then
-	boostan_configure_print
-fi
+function boostan_log_print(){
+	printf "| %20s | %110s |\n" "$1" "$2"
+}
 
-boostan_log "Start to pars the command"
-boostan_log "The command is : %s" $BOOSTAN_COMMAND
-case $BOOSTAN_COMMAND in
-	help)
-		echo "No help available"
-		exit 0;
-		;;
-	version)
-		echo "Boostan V$BOOSTAN_VERSION"
-		boostan_log "Boostan version is %s" "$BOOSTAN_VERSION"
-		;;
-	init)
-		boostan_init;
-		# TODO: maso 2014: check the result
-		;;
-	build)
-		boostan_build;
-		# TODO: maso 2014: check the result
-		;;
-	clean)
-		boostan_clean;
-		# TODO: maso 2014: check the result
-		;;
-	update)
-		boostan_update;
-		# TODO: maso 2014: check the result
-		;;
-	*)
-		boostan_log "The command is empty or unsupported."
-		echo "The command is empty/unsupported, type boostan -c help for more information."
-		exit 2;
-		;;
-esac
+function boostan_log_print_header(){
+	for((i=0;i<137;i++));
+	do
+	    printf "-"
+	done
+	printf "\n"
+	
+	if [ -z "$VAR" ]; then
+		# Check if header exist
+		printf "| %130s |\n" "$1"
+		for((i=0;i<137;i++));
+		do
+		    printf "-"
+		done
+		printf "\n"
+	fi
+}
 
+function boostan_log_print_footer(){
+	for((i=0;i<137;i++));
+	do
+	    printf "-"
+	done
+	printf "\n"
+}
