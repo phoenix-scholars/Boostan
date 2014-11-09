@@ -53,15 +53,14 @@ function boostan_init_create_skelaton() {
 
 # Check the Boostan styles and tools
 function boostan_init_checkout(){
-	tools_path=(boostan boostan-en bin)
+	tools_path=(boostan boostan-en)
 	for tool_path in ${tools_path[*]}
 	do
 		if [ -d "$tool_path" ]; then
 			boostan_log "$tool_path" "$tool_path exist, please try update command."
 		else
-			svn checkout $BOOSTAN_REPO_PATH/$BOOSTAN_VERSION/$tool_path
-			boostan_log "$tool_path" "$tool_path is checked out."
-			rm -fR $tool_path/.svn
+			#mkdir -p "$BOOSTAN_WRK_DIR/$tool_path"
+			cp -fR "$BOOSTAN_INS_DIR/$tool_path" "$BOOSTAN_WRK_DIR/$tool_path"
 		fi
 	done
 }

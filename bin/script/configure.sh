@@ -16,7 +16,7 @@
 # http://dpq.co.ir/licence
 #################################################################################
 
-BOOSTAN_VERSION=branches/0.1.1
+BOOSTAN_VERSION=trunk
 BOOSTAN_REPO_PATH=https://github.com/phoenix-scholars/Boostan
 
 
