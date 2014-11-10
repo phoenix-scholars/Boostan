@@ -19,7 +19,6 @@
 
 function boostan_init_create_skelaton() {
 	project_dirs=(\
-		src \
 		image \
 		tmp \
 		output \
@@ -43,6 +42,7 @@ function boostan_init_apply_template(){
 		return 0;
 		boostan_log "The source folder exist."
 	fi
+	mkdir -p "$BOOSTAN_SRC_DIR"
 	# Check the template
 	if [ ! -d "$BOOSTAN_TEM_DIR/$BOOSTAN_TEMPLATE" ]; then
 		boostan_log "The template \'%s\' does not exist" "$BOOSTAN_TEMPLATE"
