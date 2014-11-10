@@ -111,6 +111,7 @@
     \futurelet \reserved@a \@xhline%
 }
 
+\makeatletter
 \newcommand{\RCISPPageTitle@proposal}{%
 	\makeatletter
 	\defpersianfont\titlefont[Scale=3]{B Nazanin}
@@ -123,11 +124,11 @@
 	\thispagestyle{empty}%
 	{% عنوان بالای صفحه
 		\begin{center}%
-			\includegraphics[width=0.2\textwidth]{logo}%
+			\includegraphics[width=0.3\textwidth]{image/logo}%
 			\\[0.1\baselineskip]%
-			{ پژوهشکده پردازش هوشمند علائم}% Publisher
+			{\@institute}% Publisher
 			\\[0.1\baselineskip]%
-			{ گروه رمز و امنیت اطلاعات}%
+			{\@group}%
 			\\[2\baselineskip]%
 		\end{center}%
 	}
@@ -144,9 +145,9 @@
 			\begin{tabular}{@{\vrule width 2pt} p{0.2\textwidth} | p{0.6\textwidth}@{\vrule width 2pt}} \thickhline%
 			عنوان پروژه & \@title \\ \hline%
 			کارفرما     & \@institute \\ \hline%
-			مجری        & \@institute \\ \hline%
+			مجری        & \@institute - \@group \\ \hline%
 			مدیر پروژه  & \@manager \\ \hline%
-			ویرایشگر    & \@editor \\ \hline%
+			ویرایشگر    & \@author \\ \hline%
 			تاریخ ارائه & \@date \\ \hline%
 			شماره نسخه  & \@version \\ 
 			\thickhline%
@@ -156,6 +157,7 @@
 	\clearpage
 	\makeatother
 }
+\makeatother
 
 \makeatletter
 \newcommand{\RCISPPageTitle@presentation}{%

@@ -24,8 +24,36 @@
 \ProcessOptions 
 % \LoadClass[11pt,a4paper,onecolumn]{article}
 \LoadClass[article,a4paper]{memoir}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              package management       
+%                        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{../boostan/Boostan-Variable}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{draftwatermark}
+\usepackage{fourier}
+\usepackage[scaled=.92]{helvet}
+\usepackage{calc}
+\usepackage{pifont}
+\usepackage[font=footnotesize,labelformat=empty]{subfig}
+\usepackage{multirow}
+\usepackage{makeidx}
+\usepackage{framed}
+\usepackage{../boostan/Boostan-Environment}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{../boostan/Boostan-Glossory}
+\usepackage{xepersian}
 
-\usepackage{../boostan/Boostan-Proposal}
+\usepackage{../boostan/Boostan-Title}
 
 
 \counterwithout{section}{chapter}
@@ -98,37 +126,56 @@
 }
 
 
+\makeatletter
 \hypersetup{
-	% موقعی که فایل پی دی اف خروجی را باز می کنید صفحه به صورت عریض و بزرگ باز می شود.
 	pdfmenubar=false,
 	pdfstartview=FitH,
 	pdfpagemode=FullScreen,
 	%pagebackref=true,
 	%bookmarks=true,
-	% در قسمت مراجع شماره صفحه ای که به آن مرجع ارجاع داده است را وارد می کند،
-	% مواردی که
-	% برای فعال سازی این که شماره اشکال را به صورت ارجاعی نشان دهد
 	%hyperfigures=true,
-	% به جای استفاده از مربع قرمز دور موارد ارجاعی از لینک های رنگی استفاده کند
 	colorlinks=true,
-	% رنگ برخی از لینک ها در زیر تعریف شده است.
 	linkcolor=blue,
 	anchorcolor=green,
 	citecolor=magenta,
 	urlcolor=cyan,
 	filecolor=magenta,
 	pdftoolbar=true,
-	pdftitle = {Watermarking and Steganography},
+	pdftitle = {\@title},
 	pdfkeywords = {Watermarking, Steganography, Steganalysis},
 	%bookmarksopen = true,
 	pdfpagemode=UseOutlines
 }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Graphics
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{%
+	{.}%
+	{..}%
+	{../image}%
+	{../images}%
+	{./image}%
+	{./images}%
+}
+
+\newcommand{\noimage}{%
+  \setlength{\fboxsep}{-\fboxrule}%
+  \fbox{\phantom{\rule{150pt}{100pt}}}% Framed box
+}
+
+\makeatletter
+\patchcmd{\Gin@ii}
+  {\begingroup}% <search>
+  {\begingroup\renewcommand{\@latex@error}[2]{\noimage}}% <replace>
+  {}% <success>
+  {}% <failure>
+\makeatother
+
 
 \endinput
-
-
-
-
 
 
 
