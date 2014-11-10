@@ -19,9 +19,8 @@
 
 function boostan_init_create_skelaton() {
 	project_dirs=(\
-		attach \
 		src \
-		src/image \
+		image \
 		tmp \
 		output \
 	)
@@ -34,21 +33,29 @@ function boostan_init_create_skelaton() {
 			boostan_log "%s is created." "$project_dir"
 		fi
 	done
-	project_files=(\
-		README \
-		LICENSE \
-		src/main.tex \
-	)
-	for project_file in ${project_files[*]}
-	do
-		if [ -f "$BOOSTAN_WRK_DIR/$project_file" ];
-		then
-			boostan_log "%s is created before, try update command." "$project_file"
-		else
-			touch "$BOOSTAN_WRK_DIR/$project_file"
-			boostan_log "%s is created." "$project_file" 
-		fi
-	done
+	return 0;
+}
+
+# Create the template project
+function boostan_init_apply_template(){
+	# Check the source folder
+	if [ -d "$BOOSTAN_SRC_DIR" ]; then
+		return 0;
+		boostan_log "The source folder exist."
+	fi
+	# Check the template
+	if [ ! -d "$BOOSTAN_TEM_DIR/$BOOSTAN_TEMPLATE" ]; then
+		boostan_log "The template \'%s\' does not exist" "$BOOSTAN_TEMPLATE"
+		return 1;
+	fi
+	# copy the project template
+	boostan_log "Sync the \'%s\' with the \'%s\'" \
+		"$BOOSTAN_SRC_DIR"  \
+		"$BOOSTAN_TEM_DIR/$BOOSTAN_TEMPLATE" 
+	rsync -rt \
+		"$BOOSTAN_TEM_DIR/$BOOSTAN_TEMPLATE/" \
+		"$BOOSTAN_SRC_DIR/"
+	return 0;
 }
 
 # Check the Boostan styles and tools
@@ -63,10 +70,13 @@ function boostan_init_checkout(){
 			cp -fR "$BOOSTAN_INS_DIR/$tool_path" "$BOOSTAN_WRK_DIR/$tool_path"
 		fi
 	done
+	return 0;
 }
 
 
 function boostan_init(){
 	boostan_init_create_skelaton
+	boostan_init_apply_template
 	boostan_init_checkout
+	return 0;
 }

@@ -6,12 +6,24 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>net.sourceforge.texlipse.builder.TexlipseBuilder</name>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/net.sourceforge.texlipse.builder.TexlipseBuilder.launch</value>
+				</dictionary>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>net.sourceforge.texlipse.builder.TexlipseNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>template/proposal/.tex</name>
+			<type>1</type>
+			<location>/usr/local/texlive/2013/texmf-dist/tex/latex/tools/.tex</location>
+		</link>
+	</linkedResources>
 </projectDescription>

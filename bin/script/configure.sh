@@ -22,18 +22,20 @@ BOOSTAN_REPO_PATH=https://github.com/phoenix-scholars/Boostan
 
 BOOSTAN_BIN_DIR=$BOOSTAN_INS_DIR/bin
 BOOSTAN_DOC_DIR=$BOOSTAN_INS_DIR/doc
+BOOSTAN_TEM_DIR=$BOOSTAN_INS_DIR/template
 BOOSTAN_STY_DIR=$BOOSTAN_INS_DIR
 BOOSTAN_WRK_DIR=$PWD
 BOOSTAN_SRC_DIR=$BOOSTAN_WRK_DIR/src
 BOOSTAN_TMP_DIR=$BOOSTAN_WRK_DIR/tmp
 BOOSTAN_OUT_DIR=$BOOSTAN_WRK_DIR/output
 
+BOOSTAN_TEMPLATE=undefined
 BOOSTAN_COMMAND=
 BOOSTAN_VERBOSE=false
 
 PROJECT_NAME=`basename "$BOOSTAN_WRK_DIR"`
  
-while getopts ":c:vV" opt; do
+while getopts ":c:t:vV" opt; do
 	case $opt in
 		c)
 			BOOSTAN_COMMAND=$OPTARG
@@ -46,6 +48,10 @@ while getopts ":c:vV" opt; do
 		v)
 			BOOSTAN_COMMAND=version
 			boostan_log "The command is set to version"
+			;;
+		t)
+			BOOSTAN_TEMPLATE=$OPTARG
+			boostan_log "The template is : %s"  "$OPTARG"
 			;;
 		\?)
 			echo "Invalid option: -$OPTARG" >&2
@@ -65,5 +71,6 @@ function boostan_configure_print(){
 	boostan_log_print BOOSTAN_WRK_DIR "$BOOSTAN_WRK_DIR"
 	boostan_log_print BOOSTAN_STY_DIR "$BOOSTAN_STY_DIR"
 	boostan_log_print PROJECT_NAME  "$PROJECT_NAME"
+	boostan_log_print BOOSTAN_TEMPLATE  "$BOOSTAN_TEMPLATE"
 	boostan_log_print_footer
 }
