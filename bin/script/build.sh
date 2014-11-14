@@ -18,18 +18,23 @@
 #configure
 
 #Make Project diagrams
-function boostan_build_umbrela() {
-	find "$BOOSTAN_WRK_DIR/attach" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
+function boostan_build_umbrello() {
+	boostan_log "Looking for umbrello files in \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+	if [ ! -d "$BOOSTAN_WRK_DIR/$1" ]; then
+		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
+		return 1;
+	fi
+	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
 	do
-		echo "Processing $file file..."
+		boostan_log "Processing %s file..." "$file"
 	    filename=$(basename "$file")
 		directoryname=$(dirname "$file")
 	    extension="${filename##*.}"
 	    filename="${filename%.*}"
 	    echo FILE: "${directoryname}/${filename}.pdf"
-	    mkdir "$PROJECT_FULL_PATH/src/image/$filename"
+	    mkdir "$BOOSTAN_WRK_DIR/$1/$filename"
 		umbrello --export svg \
-			--directory "$PROJECT_FULL_PATH/src/image/$filename" \
+			--directory "$BOOSTAN_WRK_DIR/$1/$filename" \
 			"$file"
 	done
 	return 0;
@@ -43,7 +48,7 @@ function boostan_build_umbrela() {
 #
 function boostan_build_svg () {
 	boostan_log "Looking for SVG files in \'%s\'" "$BOOSTAN_WRK_DIR/$1"
-	if [ -d "$BOOSTAN_WRK_DIR/$1" ]; then
+	if [ ! -d "$BOOSTAN_WRK_DIR/$1" ]; then
 		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
 		return 1;
 	fi
@@ -105,9 +110,9 @@ function boostan_build_src() {
 	#Make new document
 	cd "$BOOSTAN_SRC_DIR"
 	xelatex  -synctex=1 -interaction=nonstopmode --src-specials main.tex
+	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo
 	bibtex main
 	makeindex main.idx
-	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo
 	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
 	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
 	
@@ -119,7 +124,10 @@ function boostan_build_src() {
 }
 
 function boostan_build(){
-	#boostan_build_umbrela
+	boostan_log "Trying to build the project umbrello files"
+	boostan_build_umbrello image
+	boostan_build_umbrello src/image
+	boostan_build_umbrello attach
 	boostan_log "Trying to build the project SVG files"
 	boostan_build_svg image
 	boostan_build_svg src/image
