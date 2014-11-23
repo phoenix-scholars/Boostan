@@ -196,12 +196,11 @@
 \graphicspath{%
 	{./}%
 	{../}%
-	{./Pic/}%
 	{./images/}%
+	{../images/}%
 	{./image/}%
 	{../image/}%
-	{/usr/share/texmf/tex/xelatex/rcisp/images/}%
-	{/home/abolfazl/MyData/Picture/Other/book/}%
+	{/usr/share/texmf/tex/xelatex/dpq/images}%
 }
 
 % بسته ای برای رسم اشکال و نمودارها
