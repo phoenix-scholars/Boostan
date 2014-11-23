@@ -549,6 +549,16 @@
 \setdigitfont[Scale=1.2]{XB Zar}
 \doublespacing
 
+\graphicspath{%
+	{./}%
+	{../}%
+	{./images/}%
+	{../images/}%
+	{./image/}%
+	{../image/}%
+	{/usr/share/texmf/tex/xelatex/dpq/images}%
+}
+
 \endinput
 %%
 %% End of file `Brochure.cls'.

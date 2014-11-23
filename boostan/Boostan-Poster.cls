@@ -157,10 +157,14 @@
 	pdfpagemode=UseOutlines
 }
 
-
-
-\graphicspath{{./}{./Pic/}{./Pic/perm/}{./images/}{/usr/share/texmf/tex/xelatex/rcisp/images}}
-
-
+\graphicspath{%
+	{./}%
+	{../}%
+	{./images/}%
+	{../images/}%
+	{./image/}%
+	{../image/}%
+	{/usr/share/texmf/tex/xelatex/dpq/images}%
+}
 
 

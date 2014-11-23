@@ -152,11 +152,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{%
 	{./}%
-	{./Pic/}%
-	{./Pic/perm/}%
+	{../}%
 	{./images/}%
+	{../images/}%
 	{./image/}%
-	{/usr/share/texmf/tex/xelatex/rcisp/images}%
+	{../image/}%
+	{/usr/share/texmf/tex/xelatex/dpq/images}%
 }
 
 \newcommand{\noimage}{%

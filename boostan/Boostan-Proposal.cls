@@ -153,12 +153,13 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{%
-	{.}%
-	{..}%
-	{../image}%
-	{../images}%
-	{./image}%
-	{./images}%
+	{./}%
+	{../}%
+	{./images/}%
+	{../images/}%
+	{./image/}%
+	{../image/}%
+	{/usr/share/texmf/tex/xelatex/dpq/images}%
 }
 
 \newcommand{\noimage}{%
