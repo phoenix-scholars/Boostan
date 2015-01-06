@@ -9,7 +9,7 @@
 # کاربردی و سایر مواردی که از این اثر به دست می‌آید مندرج شده و در قسمت تقدیر از
 # صاحب این اثر نام برده شود.
 # 
-# نام گروه دانش پژوهان ققنوس ممکن است در محصولات به در آمده شده از این اثر درج
+# نام گروه دانش پژوهان ققنوس ممکن است در محصولات به دست آمده از این اثر درج
 # نشود که در این حالت با مطالبی که در بالا اورده شده در تضاد نیست. برای اطلاع
 # بیشتر در مورد حق نشر آدرس زیر مراجعه کنید:
 # 
@@ -54,14 +54,13 @@ function boostan_build_svg () {
 	fi
 	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(svg\)" -print0 | while read -d $'\0' file
 	do
-		echo "Processing $file file..."
+		boostan_log "Processing %s file..." $file
 	    filename=$(basename "$file")
 		directoryname=$(dirname "$file")
 	    extension="${filename##*.}"
 	    filename="${filename%.*}"
-	    echo FILE: "${directoryname}/${filename}.ps"
+	    boostan_log "FILE: \"%s\"" "${directoryname}/${filename}.ps"
 	    inkscape \
-	    	--export-text-to-path \
 	    	--export-ps="${directoryname}/${filename}.ps" "$file"
 	done
 	return 0;
@@ -127,15 +126,15 @@ function boostan_build(){
 	boostan_log "Trying to build the project umbrello files"
 	boostan_build_umbrello image
 	boostan_build_umbrello src/image
-	boostan_build_umbrello attach
+	boostan_build_umbrello attachment
 	boostan_log "Trying to build the project SVG files"
 	boostan_build_svg image
 	boostan_build_svg src/image
-	boostan_build_svg attach
+	boostan_build_svg attachment
 	boostan_log "Trying to build the project ODG files"
 	boostan_build_odg image
 	boostan_build_odg src/image
-	boostan_build_odg attach
+	boostan_build_odg attachment
 	boostan_log "Trying to build the project source"
 	boostan_build_src
 	return 0;
