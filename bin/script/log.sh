@@ -19,11 +19,18 @@
 
 function boostan_log(){
 	if [ "$BOOSTAN_VERBOSE" = true ] ; then
-		printf "[Boostan $BOOSTAN_VERSION] "
+		printf "[LOG  ] "
 		printf "$@"
 		printf "\n"
 	fi
 }
+
+function boostan_error(){
+	printf "[ERROR] "
+	printf "$@"
+	printf "\n"
+}
+
 
 function boostan_log_print(){
 	printf "| %20s | %110s |\n" "$1" "$2"

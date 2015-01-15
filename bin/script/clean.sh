@@ -96,6 +96,7 @@ function boostan_clean_src() {
 }
 
 function boostan_clean(){
+	boostan_umbrello_clean
 	boostan_clean_project
 	boostan_clean_odg image
 	boostan_clean_odg src/image

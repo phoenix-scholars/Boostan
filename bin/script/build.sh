@@ -17,29 +17,6 @@
 #################################################################################
 #configure
 
-#Make Project diagrams
-function boostan_build_umbrello() {
-	boostan_log "Looking for umbrello files in \'%s\'" "$BOOSTAN_WRK_DIR/$1"
-	if [ ! -d "$BOOSTAN_WRK_DIR/$1" ]; then
-		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
-		return 1;
-	fi
-	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
-	do
-		boostan_log "Processing %s file..." "$file"
-	    filename=$(basename "$file")
-		directoryname=$(dirname "$file")
-	    extension="${filename##*.}"
-	    filename="${filename%.*}"
-	    echo FILE: "${directoryname}/${filename}.pdf"
-	    mkdir "$BOOSTAN_WRK_DIR/$1/$filename"
-		umbrello --export svg \
-			--directory "$BOOSTAN_WRK_DIR/$1/$filename" \
-			"$file"
-	done
-	return 0;
-}
-
 #
 # تمام SVG‌ها را به PS تبدیل می‌کند
 #
@@ -108,12 +85,12 @@ function boostan_build_src() {
 	
 	#Make new document
 	cd "$BOOSTAN_SRC_DIR"
-	xelatex  -synctex=1 -interaction=nonstopmode --src-specials main.tex
-	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo
-	bibtex main
-	makeindex main.idx
-	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
-	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex
+	xelatex  -synctex=1 -interaction=nonstopmode --src-specials main.tex 1>/dev/null
+	xindy -L persian -C utf8 -I xindy -M main -t main.glg -o main.gls main.glo 1>/dev/null
+	bibtex main 1>/dev/null
+	makeindex main.idx 1>/dev/null
+	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex 1>/dev/null
+	xelatex -synctex=1 -interaction=nonstopmode --src-specials main.tex 1>/dev/null
 	
 	#Deploy
 	cp main.pdf "$BOOSTAN_WRK_DIR/output/${PROJECT_NAME}.pdf"
@@ -123,18 +100,42 @@ function boostan_build_src() {
 }
 
 function boostan_build(){
+	image_path=(image src/image attachment)
+
 	boostan_log "Trying to build the project umbrello files"
-	boostan_build_umbrello image
-	boostan_build_umbrello src/image
-	boostan_build_umbrello attachment
+	for image in "${image_path[@]}"
+	do
+		if [ -d "$BOOSTAN_WRK_DIR/$image" ]; then
+			boostan_umbrello_check $image
+			if (($? > 0)); then
+				boostan_error "Project need %s but it's not installed" "$BOOSTAN_TOOL_UMBRELLO"
+				exit 1
+			else
+				if [ "$BOOSTAN_TOOL_UMBRELLO_NEED" =  "true" ]; then
+					boostan_umbrello_build $image
+				else
+					boostan_log "No *.xmi file found in the %s" "$image"
+				fi
+			fi
+		fi
+	done
+
 	boostan_log "Trying to build the project SVG files"
-	boostan_build_svg image
-	boostan_build_svg src/image
-	boostan_build_svg attachment
+	for image in "${image_path[@]}"
+	do
+		if [ -d "$BOOSTAN_WRK_DIR/$image" ]; then
+			boostan_build_svg $image
+		fi
+	done
+
 	boostan_log "Trying to build the project ODG files"
-	boostan_build_odg image
-	boostan_build_odg src/image
-	boostan_build_odg attachment
+	for image in "${image_path[@]}"
+	do
+		if [ -d "$BOOSTAN_WRK_DIR/$image" ]; then
+			boostan_build_odg $image
+		fi
+	done
+	
 	boostan_log "Trying to build the project source"
 	boostan_build_src
 	return 0;

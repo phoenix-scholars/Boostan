@@ -19,14 +19,15 @@ TOOL_PATH=$(realpath $0)
 BOOSTAN_INS_DIR=$(dirname $(dirname $TOOL_PATH))
 
 
-source $BOOSTAN_INS_DIR/bin/script/log.sh
-source $BOOSTAN_INS_DIR/bin/script/configure.sh
-source $BOOSTAN_INS_DIR/bin/script/build.sh
-source $BOOSTAN_INS_DIR/bin/script/init.sh
-#source $BOOSTAN_INS_DIR/bin/script/make.sh
-source $BOOSTAN_INS_DIR/bin/script/update.sh
-source $BOOSTAN_INS_DIR/bin/script/clean.sh
-source $BOOSTAN_INS_DIR/bin/script/disconnect.sh
+. $BOOSTAN_INS_DIR/bin/script/log.sh
+. $BOOSTAN_INS_DIR/bin/script/configure.sh
+. $BOOSTAN_INS_DIR/bin/script/umbrello.sh
+. $BOOSTAN_INS_DIR/bin/script/build.sh
+. $BOOSTAN_INS_DIR/bin/script/init.sh
+#. $BOOSTAN_INS_DIR/bin/script/make.sh
+. $BOOSTAN_INS_DIR/bin/script/update.sh
+. $BOOSTAN_INS_DIR/bin/script/clean.sh
+. $BOOSTAN_INS_DIR/bin/script/disconnect.sh
 
 boostan_log "Print the configuration table."
 if [ "$BOOSTAN_VERBOSE" = true ] ; then
