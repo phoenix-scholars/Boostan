@@ -22,9 +22,9 @@ BOOSTAN_INS_DIR=$(dirname $(dirname $TOOL_PATH))
 . $BOOSTAN_INS_DIR/bin/script/log.sh
 . $BOOSTAN_INS_DIR/bin/script/configure.sh
 . $BOOSTAN_INS_DIR/bin/script/umbrello.sh
+. $BOOSTAN_INS_DIR/bin/script/gnuplot.sh
 . $BOOSTAN_INS_DIR/bin/script/build.sh
 . $BOOSTAN_INS_DIR/bin/script/init.sh
-#. $BOOSTAN_INS_DIR/bin/script/make.sh
 . $BOOSTAN_INS_DIR/bin/script/update.sh
 . $BOOSTAN_INS_DIR/bin/script/clean.sh
 . $BOOSTAN_INS_DIR/bin/script/disconnect.sh

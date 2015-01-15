@@ -120,6 +120,24 @@ function boostan_build(){
 		fi
 	done
 
+	boostan_log "Trying to build the project plot files"
+	for image in "${image_path[@]}"
+	do
+		if [ -d "$BOOSTAN_WRK_DIR/$image" ]; then
+			boostan_gnuplot_check $image
+			if (($? > 0)); then
+				boostan_error "Project need %s but it's not installed" "$BOOSTAN_TOOL_GNUPLOT"
+				exit 1
+			else
+				if [ "$BOOSTAN_TOOL_GNUPLOT_NEED" =  "true" ]; then
+					boostan_gnuplot_build $image
+				else
+					boostan_log "No *.plot file found in the %s" "$image"
+				fi
+			fi
+		fi
+	done
+
 	boostan_log "Trying to build the project SVG files"
 	for image in "${image_path[@]}"
 	do
