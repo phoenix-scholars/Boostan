@@ -30,27 +30,15 @@ BOOSTAN_TOOL_UMBRELLO_NEED=false
 # \return مقدار 0 اگر ابزارها موجود باشد و 1 اگر این ابزارها وجود نداشته باشد.
 #
 function boostan_umbrello_check() {
-	BOOSTAN_TOOL_UMBRELLO_NEED=false
-	if ! hash "$BOOSTAN_TOOL_UMBRELLO" 2>/dev/null; then
-		BOOSTAN_TOOL_UMBRELLO_EXIST=false
-		boostan_log "Boostan require %s but it's not installed." "$BOOSTAN_TOOL_UMBRELLO"
+	temp=$(find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0)
+	if [-z "$temp" ]; then
+		echo false
 	else
-		BOOSTAN_TOOL_UMBRELLO_EXIST=true
-		boostan_log "Boostan use %s and it's installed." "$BOOSTAN_TOOL_UMBRELLO"
+		echo true
 	fi
-	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
-	do
-		BOOSTAN_TOOL_UMBRELLO_NEED=true
-		if [ "$BOOSTAN_TOOL_UMBRELLO_EXIST" = "true" ]; then
-			boostan_log "Boostan requires %s and it's installed." "$BOOSTAN_TOOL_UMBRELLO"
-			return 0
-		else
-			boostan_error "Boostan requires %s but it's not installed." "$BOOSTAN_TOOL_UMBRELLO"
-			return 1
-		fi
-	done
-	BOOSTAN_TOOL_UMBRELLO_NEED=false
-	boostan_log "Boostan does not require %s in the %s." "$BOOSTAN_TOOL_UMBRELLO" "$1"
+	if ! hash "$BOOSTAN_TOOL_UMBRELLO" 2>/dev/null; then
+		return 1
+	fi
 	return 0
 }
 
@@ -68,6 +56,14 @@ function boostan_umbrello_build() {
 	if [ ! -d "$BOOSTAN_WRK_DIR/$1" ]; then
 		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
 		return 1;
+	fi
+	if ! hash "$BOOSTAN_TOOL_UMBRELLO" 2>/dev/null; then
+		BOOSTAN_TOOL_UMBRELLO_EXIST=false
+		boostan_log "Boostan require %s but it's not installed." "$BOOSTAN_TOOL_UMBRELLO"
+		exit 1
+	else
+		BOOSTAN_TOOL_UMBRELLO_EXIST=true
+		boostan_log "Boostan use %s and it's installed." "$BOOSTAN_TOOL_UMBRELLO"
 	fi
 	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0 | while read -d $'\0' file
 	do

@@ -103,10 +103,12 @@ function boostan_build(){
 	image_path=(image src/image attachment)
 
 	boostan_log "Trying to build the project umbrello files"
+	
 	for image in "${image_path[@]}"
 	do
 		if [ -d "$BOOSTAN_WRK_DIR/$image" ]; then
-			boostan_umbrello_check $image
+			BOOSTAN_TOOL_UMBRELLO_NEED=`boostan_umbrello_check "$image"`
+			echo BOOSTAN_TOOL_UMBRELLO_NEED=$BOOSTAN_TOOL_UMBRELLO_NEED
 			if (($? > 0)); then
 				boostan_error "Project need %s but it's not installed" "$BOOSTAN_TOOL_UMBRELLO"
 				exit 1
