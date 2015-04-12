@@ -58,18 +58,18 @@ function boostan_build_odg () {
 		boostan_log "The path not exist \'%s\'" "$BOOSTAN_WRK_DIR/$1"
 		return 1;
 	fi
+	_oodraw_options="--headless"
 	find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(odg\)" -print0 | while read -d $'\0' file
 	do
-		boostan_log "Processing \'%s\' file..." $file
+		boostan_log "Processing \'%s\' file..." "$file"
 		filename=$(basename "$file")
 		directoryname=$(dirname "$file")
 		extension="${filename##*.}"
 		filename="${filename%.*}"
-		oodraw \
-			--headless \
-			--convert-to pdf \
-			--outdir "${directoryname}" \
-			"$file"
+		_oodraw_output="--convert-to pdf --outdir \"${directoryname}\""
+		_oodraw_cmd="libreoffice $_oodraw_options  $_oodraw_output \"$file\""
+		boostan_log "Convert command: %s" "$_oodraw_cmd"
+		$_oodraw_cmd
 		boostan_log "The output of the input odg file is stored in \'%s\'" "${directoryname}/${filename}.pdf"
 	done
 	return 0;

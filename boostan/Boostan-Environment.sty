@@ -311,6 +311,14 @@
 	\endlatin%
 }
 
-
+\lstnewenvironment{text}[1][]{%
+	\latin%
+	\lstset{%
+		language=TeX4,%
+		#1%
+	}%
+}{%
+	\endlatin%
+}
 
 \endinput

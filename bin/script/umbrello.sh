@@ -31,7 +31,7 @@ BOOSTAN_TOOL_UMBRELLO_NEED=false
 #
 function boostan_umbrello_check() {
 	temp=$(find "$BOOSTAN_WRK_DIR/$1" -type f -regex ".*\.\(xmi\)" -print0)
-	if [-z "$temp" ]; then
+	if [ -z "$temp" ]; then
 		echo false
 	else
 		echo true
